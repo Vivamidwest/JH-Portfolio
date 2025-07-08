@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josh Hunt - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .project-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        .section-title {
+            border-bottom: 2px solid #e5e7eb; /* Light gray line */
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+        /* Removed .enhanced-description and .loading-indicator styles */
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-8 shadow-lg rounded-b-xl">
+        <div class="container mx-auto px-6 text-center">
+            <!-- Headshot Image -->
+            <img src="Josh_Hunt_HS_Port.jpeg" alt="Josh Hunt Headshot"
+                 class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg object-cover">
+
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Josh Hunt</h1>
+            <p class="text-xl md:text-2xl font-light">Videographer & Video Editor | VFX Editor | Post-Production Specialist</p>
+            <div class="mt-4 text-lg">
+                <a href="https://www.linkedin.com/in/josh-hunt-vivamidwest/" target="_blank" class="text-white hover:text-blue-200 mx-3">LinkedIn</a>
+                <a href="mailto:Vivamidwest@gmail.com" class="text-white hover:text-blue-200 mx-3">Email</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Introduction / About Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold section-title">About Me</h2>
+            <p class="text-lg leading-relaxed mb-4">
+                Welcome and thank you for taking interest in viewing this curated sampling of my accomplishments! With over 15 years of comprehensive experience in dynamic production environments, spanning broadcast, film, and digital media, I bring a unique blend of creative vision and technical expertise to every project. My work focuses on capturing high-quality footage, executing creative visions, and delivering polished content under pressure.
+            </p>
+            <p class="text-lg leading-relaxed">
+                This portfolio showcases a selection of my work, including videography, video editing, and visual effects editing. Due to the nature of some past projects (NDAs, specific roles within large teams), I've included a mix of finished pieces and detailed case studies to illustrate my process, problem-solving abilities, and technical workflows.
+            </p>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold section-title">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project Card 1: The Autograph King (Freelance Film Editor) -->
+                <div class="project-card p-6">
+                    <img src="TAK.png" alt="The Autograph King" class="w-full h-auto rounded-lg mb-4 object-cover">
+                    <h3 class="text-xl font-bold mb-2">The Autograph King</h3>
+                    <p class="text-gray-600 mb-3">
+                        Co-produced and edited an entertaining and joyful documentary from over a year of multi-format footage.
+                    </p>
+                    <p class="text-sm text-gray-700 mb-2">**Role:** Freelance Film Editor, Co-Producer</p>
+                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Post-Production Workflow Management, Technical Troubleshooting, Narrative Editing</p>
+                    <a href="Case-Study-TAK.html" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">View Project</a>
+                </div>
+
+                <!-- Project Card 2: WandaVision (VFX Editor) - REVISED -->
+                <div class="project-card p-6">
+                    <!-- Suggest using an official show image or a placeholder that implies high-profile -->
+                    <img src="WandaVision.webp" alt="WandaVision" class="w-full h-auto rounded-lg mb-4 object-cover">
+                    <h3 class="text-xl font-bold mb-2">WandaVision (Marvel Studios)</h3>
+                    <p class="text-gray-600 mb-3">
+                        As a Visual Effects Editor, I demonstrated exceptional organizational skills managing 10 simultaneous VFX projects for this high-profile Marvel series. My work involved meticulous tracking and integration of complex visual elements, contributing to the show's acclaimed visual narrative under strict deadlines.
+                        <br><br>
+                        *Due to strict studio confidentiality, proprietary assets cannot be displayed. A detailed case study outlining my process, challenges, and impact is available upon request.*
+                    </p>
+                    <p class="text-sm text-gray-700 mb-2">**Role:** Visual Effects Editor</p>
+                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Digital Compositing, Project Management, Workflow Optimization, Attention to Detail, Confidentiality Management</p>
+                    <!-- Link to an official trailer or a text-based case study -->
+                    <a href="case-study-wanda.html" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More / View Trailer</a>
+                </div>
+
+                <!-- Project Card 3: Moore Productions (Videographer & Editor) -->
+                <div class="project-card p-6">
+                    <img src="Moore.png" alt="Moore Productions" class="w-full h-auto rounded-lg mb-4 object-cover">
+                    <h3 class="text-xl font-bold mb-2">Moore Productions</h3>
+                    <p class="text-gray-600 mb-3">
+                        Managed all aspects of video production from conception to delivery in a two-person operation.
+                    </p>
+                    <p class="text-sm text-gray-700 mb-2">**Role:** Videographer & Editor</p>
+                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Field Production, Lighting, Audio Recording, Video Editing, Motion Graphics, Equipment Maintenance</p>
+                    <a href="Case-Study-Moore.html" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">View Project</a>
+                </div>
+
+                <!-- Add more project cards as needed, following the same structure -->
+
+            </div>
+        </section>
+
+        <!-- Process & Case Studies Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold section-title">Process & Case Studies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Case Study 1: Media Management & Archiving -->
+                <div class="project-card p-6">
+                    <h3 class="text-xl font-bold mb-2">Streamlining Media Management</h3>
+                    <p class="text-gray-600 mb-3">
+                        Detailed overview of how I managed and organized extensive footage for complex TV series.
+                    </p>
+                    <p class="text-sm text-gray-700 mb-2">**Focus:** Workflow Optimization, Quality Control, Efficiency Gains</p>
+                    <a href="Case-Study-Media.html" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Read Case Study</a>
+                </div>
+
+                <!-- Case Study 2: VFX Shot Delivery Workflow -->
+                <div class="project-card p-6">
+                    <h3 class="text-xl font-bold mb-2">VFX Shot Delivery Workflow</h3>
+                    <p class="text-gray-600 mb-3">
+                        An in-depth look at my process for meticulously tracking and delivering 70-100+ visual effects shots per episode under tight deadlines, utilizing FileMaker Pro for visual effect shot elements.
+                    </p>
+                    <p class="text-sm text-gray-700 mb-2">**Focus:** Technical Execution, Database Management, Deadline Adherence</p>
+                    <a href="[Link to VFX Workflow Case Study PDF/Page]" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Read Case Study</a>
+                </div>
+
+                <!-- Add more case studies or process breakdowns here -->
+
+            </div>
+        </section>
+
+        <!-- Personal Projects Section (Optional, if you want to highlight separately) -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold section-title">Personal & Learning Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Personal Project 1: E-Commerce Shop Owner -->
+                <div class="project-card p-6">
+                    <img src="Horizon-Forest-Shop-Banner.png" alt="Horizon Frameworks" class="w-full h-auto rounded-lg mb-4 object-cover">
+                    <h3 class="text-xl font-bold mb-2">E-Commerce Shop Owner (Etsy)</h3>
+                    <p class="text-gray-600 mb-3">
+                        Applied prompt engineering and image editing in Midjourney to create designs and established an Etsy shop for online sales.
+                    </p>
+                    <p class="text-sm text-gray-700 mb-2">**Role:** Shop Manager/Designer</p>
+                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Prompt Engineering, Image Editing, Branding, Project Management</p>
+                    <a href="[Link to Etsy Shop/Project Details]" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">View Project</a>
+                </div>
+
+                <!-- Personal Project 2: Content Creator -->
+                <div class="project-card p-6">
+                    <img src="YouTubeGFX.jpg" alt="Content Creator" class="w-full h-auto rounded-lg mb-4 object-cover">
+                    <h3 class="text-xl font-bold mb-2">Content Creator </h3>
+                    <p class="text-gray-600 mb-3">
+                        Managed and designed YouTube and Vimeo channels from scratch, showcasing creations with AI and various online resources.
+                    </p>
+                    <p class="text-sm text-gray-700 mb-2">**Role:** Channel Manager/Designer/Editor</p>
+                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** AI Content Generation, Video Production, SEO, DaVinci Resolve</p>
+                    <a href="[Link to YouTube/Vimeo Channel]" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">View Channels</a>
+                </div>
+
+                <!-- Add more personal projects here -->
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Josh Hunt. All rights reserved.</p>
+            <p class="mt-2">Connect with me: <a href="https://www.linkedin.com/in/josh-hunt-vivamidwest/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> | <a href="mailto:Vivamidwest@gmail.com" class="text-blue-400 hover:underline">Email</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
