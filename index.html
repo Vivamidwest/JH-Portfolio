@@ -297,7 +297,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Main Content Area -->
     <main class="container mx-auto px-6 py-12">
 
@@ -437,6 +437,40 @@
             <p class="mt-2">Connect with me: <a href="https://www.linkedin.com/in/josh-hunt-vivamidwest/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> | <a href="mailto:Vivamidwest@gmail.com" class="text-blue-400 hover:underline">Email</a></p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoGallery = document.querySelector('.logo-gallery');
+            let scrollAmount = 0;
+            const scrollSpeed = 0.5; // Adjust this value for faster/slower scrolling
+            const scrollInterval = 20; // Milliseconds between scroll updates
+
+            function autoScroll() {
+                if (logoGallery) {
+                    // Check if we've scrolled to the end (or near the end)
+                    if (logoGallery.scrollLeft >= (logoGallery.scrollWidth - logoGallery.clientWidth)) {
+                        logoGallery.scrollLeft = 0; // Reset to beginning
+                    } else {
+                        logoGallery.scrollLeft += scrollSpeed;
+                    }
+                }
+            }
+
+            // Start auto-scrolling when the page loads
+            let scrollTimer = setInterval(autoScroll, scrollInterval);
+
+            // Pause scrolling on hover
+            if (logoGallery) {
+                logoGallery.addEventListener('mouseenter', () => {
+                    clearInterval(scrollTimer);
+                });
+
+                logoGallery.addEventListener('mouseleave', () => {
+                    scrollTimer = setInterval(autoScroll, scrollInterval);
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
