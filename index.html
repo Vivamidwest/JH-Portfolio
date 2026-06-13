@@ -114,6 +114,26 @@
         @media (prefers-reduced-motion: reduce) {
             .logo-gallery { animation: none; }
         }
+        .logo-scroll-track {
+            position: relative;
+            height: 4px;
+            margin: 10px auto 0;
+            max-width: 100%;
+            border-radius: 2px;
+            background-color: rgba(0, 240, 255, 0.08);
+            overflow: hidden;
+        }
+        .logo-scroll-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 20%;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #00f0ff, #ff007f);
+            box-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+            transition: left 0.05s linear;
+        }
         .logo-item {
             width: 204px;
             height: 204px;
@@ -738,6 +758,9 @@
                     </div>
                 </div>
             </div>
+            <div class="logo-scroll-track">
+                <div class="logo-scroll-thumb"></div>
+            </div>
             </div>
         </div>
     </section>
@@ -1125,6 +1148,32 @@
                     }
                 });
                 window.addEventListener('resize', setLoopDistance);
+
+                // Custom scroll progress indicator (visible on all devices,
+                // including iPad/iOS where native scrollbars are hidden).
+                const viewport = logoGallery.parentElement;
+                const track = viewport.parentElement.querySelector('.logo-scroll-track');
+                const thumb = track ? track.querySelector('.logo-scroll-thumb') : null;
+                if (thumb) {
+                    function updateThumb() {
+                        const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+                        const trackWidth = track.clientWidth;
+                        const thumbWidth = Math.max((viewport.clientWidth / viewport.scrollWidth) * trackWidth, 24);
+                        thumb.style.width = thumbWidth + 'px';
+                        if (maxScroll > 0) {
+                            const ratio = viewport.scrollLeft / maxScroll;
+                            thumb.style.left = (ratio * (trackWidth - thumbWidth)) + 'px';
+                        } else {
+                            thumb.style.left = '0px';
+                        }
+                    }
+                    updateThumb();
+                    viewport.addEventListener('scroll', updateThumb, { passive: true });
+                    window.addEventListener('resize', updateThumb);
+                    images.forEach((img) => {
+                        if (!img.complete) img.addEventListener('load', updateThumb);
+                    });
+                }
 
                 logoGallery.addEventListener('mouseenter', () => {
                     logoGallery.classList.add('paused');
