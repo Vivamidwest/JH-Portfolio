@@ -616,6 +616,14 @@
                     </div>
                 </div>
                 <div class="logo-item group">
+                    <img src="TWKY-LOGO.jpg" alt="They Will Kill You Logo">
+                    <div class="logo-overlay">
+                        <button onclick="openModal('DfD6-Gf9AeE')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
+                            View Trailer
+                        </button>
+                    </div>
+                </div>
+                <div class="logo-item group">
                     <img src="TAK-LOGO.jpg" alt="The Autograph King Logo">
                     <div class="logo-overlay">
                         <button onclick="openModal('DHJwr11GhWw')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
@@ -1070,37 +1078,76 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const logoGallery = document.querySelector('.logo-gallery');
-            const scrollSpeed = 0.5; // Adjust this value for faster/slower scrolling
-            const scrollInterval = 20; // Milliseconds between scroll updates
+            const scrollSpeed = 0.5; // pixels per frame (approx, at 60fps)
 
-            // Calculate the width of the original content (assuming it's exactly half of the total scrollWidth)
-            const originalContentWidth = logoGallery.scrollWidth / 2;
-
-            function autoScroll() {
-                if (logoGallery) {
-                    // Increment scroll position
-                    logoGallery.scrollLeft += scrollSpeed;
-
-                    // If we have scrolled past the original content (into the duplicated content)
-                    if (logoGallery.scrollLeft >= originalContentWidth) {
-                        // Instantly reset scroll position back to the beginning of the duplicated content
-                        logoGallery.scrollLeft = logoGallery.scrollLeft - originalContentWidth;
-                    }
-                }
-            }
-
-            // Start auto-scrolling when the page loads
-            let scrollTimer = setInterval(autoScroll, scrollInterval);
-
-            // Pause scrolling on hover
             if (logoGallery) {
-                logoGallery.addEventListener('mouseenter', () => {
-                    clearInterval(scrollTimer);
-                });
+                let originalContentWidth = 0;
+                let isPaused = false;
+                let rafId = null;
 
-                logoGallery.addEventListener('mouseleave', () => {
-                    scrollTimer = setInterval(autoScroll, scrollInterval);
+                // Recalculate the width of the original (first) set of logos.
+                // This must run AFTER images have loaded, since image sizes
+                // affect the gallery's total scrollWidth.
+                function calculateWidth() {
+                    originalContentWidth = logoGallery.scrollWidth / 2;
+                }
+
+                // Recalculate once on load, and again once every image has
+                // finished loading (covers slow connections / mobile).
+                calculateWidth();
+                const images = logoGallery.querySelectorAll('img');
+                let loadedCount = 0;
+                images.forEach((img) => {
+                    if (img.complete) {
+                        loadedCount++;
+                    } else {
+                        img.addEventListener('load', () => {
+                            loadedCount++;
+                            if (loadedCount === images.length) calculateWidth();
+                        });
+                        img.addEventListener('error', () => {
+                            loadedCount++;
+                            if (loadedCount === images.length) calculateWidth();
+                        });
+                    }
                 });
+                if (loadedCount === images.length) calculateWidth();
+
+                // Also recalc on resize/orientation change (mobile/tablet)
+                window.addEventListener('resize', calculateWidth);
+
+                // Animation loop using requestAnimationFrame for smoother,
+                // more reliable scrolling across browsers/devices.
+                function autoScroll() {
+                    if (!isPaused && originalContentWidth > 0) {
+                        logoGallery.scrollLeft += scrollSpeed;
+
+                        // If we've scrolled past the original content (into the
+                        // duplicated set), wrap back to the start seamlessly.
+                        if (logoGallery.scrollLeft >= originalContentWidth) {
+                            logoGallery.scrollLeft -= originalContentWidth;
+                        }
+                    }
+                    rafId = requestAnimationFrame(autoScroll);
+                }
+                rafId = requestAnimationFrame(autoScroll);
+
+                // Pause scrolling on hover (desktop) and touch (mobile/tablet)
+                let hoverPaused = false;
+                let touchPaused = false;
+                const updatePaused = () => { isPaused = hoverPaused || touchPaused; };
+
+                logoGallery.addEventListener('mouseenter', () => { hoverPaused = true; updatePaused(); });
+                logoGallery.addEventListener('mouseleave', () => { hoverPaused = false; updatePaused(); });
+                logoGallery.addEventListener('touchstart', () => {
+                    touchPaused = true;
+                    hoverPaused = false; // a touch shouldn't leave a stale "hover" pause active
+                    updatePaused();
+                }, { passive: true });
+                logoGallery.addEventListener('touchend', () => {
+                    // Resume after a short delay so manual swipes feel natural
+                    setTimeout(() => { touchPaused = false; updatePaused(); }, 1500);
+                }, { passive: true });
             }
 
             // SMPTE Timecode Ticker loop (runs at 24fps)
