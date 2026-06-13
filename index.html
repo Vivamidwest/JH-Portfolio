@@ -97,6 +97,20 @@
         }
 
         /* Logo Carousel Specific Grid-Line Style (Shrunk by 15%) */
+        .logo-gallery {
+            width: max-content;
+            animation: logo-scroll 100s linear infinite;
+        }
+        .logo-gallery.paused {
+            animation-play-state: paused;
+        }
+        @keyframes logo-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .logo-gallery { animation: none; }
+        }
         .logo-item {
             width: 204px;
             height: 204px;
@@ -394,7 +408,8 @@
             <h2 class="text-xs font-tech text-center tracking-widest text-neonCyan uppercase mb-8">
                 Projects I've Contributed To
             </h2>
-            <div class="logo-gallery flex overflow-x-auto pb-4 px-2 space-x-6 md:space-x-8 lg:space-x-12 justify-center md:justify-start">
+            <div class="logo-gallery-viewport" style="overflow: hidden; width: 100%;">
+            <div class="logo-gallery flex pb-4 px-2 space-x-6 md:space-x-8 lg:space-x-12">
                 
                 <!-- Original Set of items -->
                 <div class="logo-item group">
@@ -719,6 +734,7 @@
                         </button>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -1078,75 +1094,26 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const logoGallery = document.querySelector('.logo-gallery');
-            const scrollSpeed = 0.5; // pixels per frame (approx, at 60fps)
 
             if (logoGallery) {
-                let originalContentWidth = 0;
-                let isPaused = false;
-                let rafId = null;
-
-                // Recalculate the width of the original (first) set of logos.
-                // This must run AFTER images have loaded, since image sizes
-                // affect the gallery's total scrollWidth.
-                function calculateWidth() {
-                    originalContentWidth = logoGallery.scrollWidth / 2;
-                }
-
-                // Recalculate once on load, and again once every image has
-                // finished loading (covers slow connections / mobile).
-                calculateWidth();
-                const images = logoGallery.querySelectorAll('img');
-                let loadedCount = 0;
-                images.forEach((img) => {
-                    if (img.complete) {
-                        loadedCount++;
-                    } else {
-                        img.addEventListener('load', () => {
-                            loadedCount++;
-                            if (loadedCount === images.length) calculateWidth();
-                        });
-                        img.addEventListener('error', () => {
-                            loadedCount++;
-                            if (loadedCount === images.length) calculateWidth();
-                        });
-                    }
-                });
-                if (loadedCount === images.length) calculateWidth();
-
-                // Also recalc on resize/orientation change (mobile/tablet)
-                window.addEventListener('resize', calculateWidth);
-
-                // Animation loop using requestAnimationFrame for smoother,
-                // more reliable scrolling across browsers/devices.
-                function autoScroll() {
-                    if (!isPaused && originalContentWidth > 0) {
-                        logoGallery.scrollLeft += scrollSpeed;
-
-                        // If we've scrolled past the original content (into the
-                        // duplicated set), wrap back to the start seamlessly.
-                        if (logoGallery.scrollLeft >= originalContentWidth) {
-                            logoGallery.scrollLeft -= originalContentWidth;
-                        }
-                    }
-                    rafId = requestAnimationFrame(autoScroll);
-                }
-                rafId = requestAnimationFrame(autoScroll);
-
-                // Pause scrolling on hover (desktop) and touch (mobile/tablet)
-                let hoverPaused = false;
                 let touchPaused = false;
-                const updatePaused = () => { isPaused = hoverPaused || touchPaused; };
 
-                logoGallery.addEventListener('mouseenter', () => { hoverPaused = true; updatePaused(); });
-                logoGallery.addEventListener('mouseleave', () => { hoverPaused = false; updatePaused(); });
+                logoGallery.addEventListener('mouseenter', () => {
+                    logoGallery.classList.add('paused');
+                });
+                logoGallery.addEventListener('mouseleave', () => {
+                    if (!touchPaused) logoGallery.classList.remove('paused');
+                });
                 logoGallery.addEventListener('touchstart', () => {
                     touchPaused = true;
-                    hoverPaused = false; // a touch shouldn't leave a stale "hover" pause active
-                    updatePaused();
+                    logoGallery.classList.add('paused');
                 }, { passive: true });
                 logoGallery.addEventListener('touchend', () => {
-                    // Resume after a short delay so manual swipes feel natural
-                    setTimeout(() => { touchPaused = false; updatePaused(); }, 1500);
+                    // Resume after a short delay so manual interaction feels natural
+                    setTimeout(() => {
+                        touchPaused = false;
+                        logoGallery.classList.remove('paused');
+                    }, 1500);
                 }, { passive: true });
             }
 
