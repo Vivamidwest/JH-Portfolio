@@ -6,445 +6,701 @@
     <title>Josh Hunt - Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Inter for clean reading, Orbitron for 80s sci-fi tech aesthetics -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        tech: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        brandBg: '#07020d',
+                        brandCard: 'rgba(16, 10, 31, 0.75)',
+                        neonPink: '#ff007f',
+                        neonCyan: '#00f0ff',
+                        laserYellow: '#ffee00',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
+        /* Retro 80s Synthwave CSS Accents */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light gray background */
+            background-color: #07020d;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(122, 0, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 127, 0.08) 0%, transparent 40%);
         }
-        .container {
-            max-width: 1200px;
+
+        /* Subtle Vector Grid Background (Matches LinkedIn Banner Style) */
+        .subtle-grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center top;
         }
-        .project-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+        /* Retro Metallic Chrome & Neon Glowing Title */
+        .chrome-text {
+            background: linear-gradient(to bottom, #ffffff 0%, #dcdcdc 45%, #7a00ff 50%, #ff007f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 8px rgba(0, 240, 255, 0.5));
         }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+        /* Premium Laser Border Underlines */
+        .laser-line {
+            background: linear-gradient(90deg, #ff007f 0%, #00f0ff 100%);
         }
-        .section-title {
-            border-bottom: 2px solid #e5e7eb; /* Light gray line */
-            padding-bottom: 8px;
-            margin-bottom: 24px;
+
+        /* 80s Card Glow & Hover Transitions */
+        .retro-card {
+            background-color: rgba(16, 10, 31, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* Custom scrollbar for the logo gallery */
-        .logo-gallery::-webkit-scrollbar {
-            height: 8px;
+        .retro-card:hover {
+            transform: translateY(-4px);
+            border-color: #ff007f;
+            box-shadow: 0 10px 30px -10px rgba(255, 0, 127, 0.25);
         }
-        .logo-gallery::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 10px;
+
+        /* Electric Glowing Buttons */
+        .btn-neon-pink {
+            border: 1px solid #ff007f;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.15);
+            transition: all 0.2s ease-in-out;
         }
-        .logo-gallery::-webkit-scrollbar-thumb {
-            background: #a0a0a0;
-            border-radius: 10px;
+        .btn-neon-pink:hover {
+            background: #ff007f;
+            color: #07020d;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
         }
-        .logo-gallery::-webkit-scrollbar-thumb:hover {
-            background: #808080;
+
+        .btn-neon-cyan {
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+            transition: all 0.2s ease-in-out;
         }
-        /* Style for the individual logo containers */
+        .btn-neon-cyan:hover {
+            background: #00f0ff;
+            color: #07020d;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Logo Carousel Specific Grid-Line Style (Shrunk by 15%) */
         .logo-item {
-            /* Individual logo item sizes remain the same as you liked them */
-            width: 240px; /* Base width for mobile */
-            height: 240px; /* Base height for mobile */
+            width: 204px;
+            height: 204px;
             flex-shrink: 0;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease-in-out;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            background-color: rgba(16, 10, 31, 0.85);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #ffffff;
         }
         @media (min-width: 768px) {
             .logo-item {
-                width: 260px; /* Larger on medium screens */
-                height: 260px;
+                width: 221px;
+                height: 221px;
             }
         }
         @media (min-width: 1024px) {
             .logo-item {
-                width: 280px; /* Even larger on large screens */
-                height: 280px;
+                width: 238px;
+                height: 238px;
             }
         }
-
         .logo-item img {
-            width: 90%; /* Keep image slightly smaller than container */
-            height: 90%;
+            width: 85%;
+            height: 85%;
             object-fit: contain;
-            /* Removed grayscale filter */
-            transition: transform 0.3s ease-in-out; /* Smooth transition for hover scale */
+            transition: transform 0.3s ease-in-out;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
         }
-
+        .logo-item:hover {
+            border-color: #ff007f;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+        }
         .logo-item:hover img {
-            transform: scale(1.05); /* Slight zoom on hover */
+            transform: scale(1.05);
         }
-
         .logo-overlay {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(7, 2, 13, 0.85);
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
             border-radius: 8px;
         }
-
         .logo-item:hover .logo-overlay {
             opacity: 1;
         }
-
-        /* Adjust button text size and padding for single line */
-        .logo-overlay a {
-            font-size: 0.9rem; /* Adjusted font size */
-            padding: 0.6rem 1.2rem; /* Adjusted padding */
-            white-space: nowrap; /* Ensure text stays on one line */
-            text-align: center; /* Center the text */
+        .logo-overlay button {
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+            white-space: nowrap;
+            text-align: center;
         }
         @media (min-width: 768px) {
-            .logo-overlay a {
-                font-size: 1rem; /* Standard font size on larger screens */
+            .logo-overlay button {
+                font-size: 1rem;
                 padding: 0.75rem 1.5rem;
             }
         }
+
+        /* Floating Vector Shapes Animation Parameters (Slightly Brighter Default) */
+        .vector-shape {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.25;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        header:hover .vector-shape {
+            opacity: 0.45;
+        }
+
+        /* Ambient Keyframe Motion Sequences */
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(12px) rotate(-3deg); }
+        }
+        @keyframes drift {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            50% { transform: translate(10px, -8px) rotate(6deg); }
+        }
+        @keyframes orbit-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes color-pulse {
+            0%, 100% { filter: drop-shadow(0 0 3px rgba(0, 240, 255, 0.4)); }
+            50% { filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.8)); }
+        }
+
+        .animate-float-slow {
+            animation: float-slow 7s ease-in-out infinite;
+        }
+        .animate-float-reverse {
+            animation: float-reverse 8s ease-in-out infinite;
+        }
+        .animate-drift {
+            animation: drift 9s ease-in-out infinite;
+        }
+        .animate-orbit-slow {
+            animation: orbit-slow 25s linear infinite;
+        }
+        .animate-color-pulse {
+            animation: color-pulse 4s ease-in-out infinite;
+        }
+
+        /* Retro Arcade Easter Egg Styling */
+        #arcade-console {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #arcade-canvas {
+            background-color: #030107;
+            image-rendering: pixelated;
+        }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-slate-100 font-sans min-h-screen relative selection:bg-neonPink selection:text-white overflow-x-hidden">
 
-    <!-- Header Section -->
-    <header class="bg-gradient-to-r from-slate-600 to-emerald-700 text-white py-8 shadow-lg rounded-b-xl">
-        <div class="container mx-auto px-6 text-center">
-            <!-- Headshot Image -->
-            <img src="Josh_Hunt_HS_Port.jpeg" alt="Josh Hunt Headshot"
-                 class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg object-cover">
+    <!-- Background Layer with Vector Grid Pattern -->
+    <div class="absolute inset-0 subtle-grid-bg pointer-events-none z-0"></div>
 
-            <h1 class="text-4xl md:text-5xl font-bold mb-2">Josh Hunt</h1>
-            <p class="text-xl md:text-2xl font-light">Editor ✭ Visual Effects Editor ✭ Post-Production Specialist ✭ Videographer</p>
-            <div class="mt-4 text-lg">
-                <a href="https://www.linkedin.com/in/josh-hunt-pro/" target="_blank" class="text-white hover:text-blue-200 mx-3">LinkedIn</a>
-                <a href="mailto:joshhuntcontact@gmail.com" class="text-white hover:text-blue-200 mx-3">Email</a>
+    <!-- Header Section (Premium Synthwave Banner Look) -->
+    <header class="relative z-10 border-b border-purple-950/40 bg-brandBg/80 backdrop-blur-md py-12 shadow-lg overflow-hidden">
+        
+        <!-- Left Side Floating Vector Shapes (LinkedIn Style) -->
+        <!-- 3D Perspective Pyramid -->
+        <svg class="vector-shape w-24 h-24 top-6 left-[18%] md:block hidden text-neonCyan animate-float-slow" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="50,15 15,75 50,90" />
+            <polygon points="50,15 85,75 50,90" />
+            <line x1="15" y1="75" x2="85" y2="75" />
+        </svg>
+        
+        <!-- Retro concentric circles -->
+        <svg class="vector-shape w-16 h-16 bottom-8 left-[12%] lg:block hidden text-neonPink animate-orbit-slow" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="50" cy="50" r="40" />
+            <circle cx="50" cy="50" r="30" stroke-dasharray="4,4" />
+            <circle cx="50" cy="50" r="20" />
+            <circle cx="50" cy="50" r="10" />
+        </svg>
+
+        <!-- 3D Wireframe Cube (Left Side Inner) -->
+        <svg class="vector-shape w-14 h-14 top-24 left-[28%] md:block hidden text-laserYellow animate-drift" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="20" y="20" width="45" height="45" />
+            <rect x="35" y="35" width="45" height="45" />
+            <line x1="20" y1="20" x2="35" y2="35" />
+            <line x1="65" y1="20" x2="80" y2="35" />
+            <line x1="20" y1="65" x2="35" y2="80" />
+            <line x1="65" y1="65" x2="80" y2="80" />
+        </svg>
+
+        <!-- Right Side Floating Vector Shapes (LinkedIn Style) -->
+        <!-- Memphis wireframe cylinder grid -->
+        <svg class="vector-shape w-20 h-20 top-8 right-[18%] md:block hidden text-neonPink animate-float-reverse" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20,30 C20,10 80,10 80,30 C80,50 20,50 20,30 Z" />
+            <path d="M20,70 C20,50 80,50 80,70 C80,90 20,90 20,70 Z" />
+            <line x1="20" y1="30" x2="20" y2="70" />
+            <line x1="50" y1="40" x2="50" y2="80" />
+            <line x1="80" y1="30" x2="80" y2="70" />
+        </svg>
+
+        <!-- Retro Crosses and Play marks -->
+        <svg class="vector-shape w-14 h-14 bottom-10 right-[10%] lg:block hidden text-neonCyan animate-drift" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="20" y1="50" x2="80" y2="50" />
+            <line x1="50" y1="20" x2="50" y2="80" />
+            <polygon points="75,20 90,35 75,50" fill="currentColor" />
+        </svg>
+
+        <!-- Floating Geometric Sparkles & Tech Crosses (Right Side Inner) -->
+        <svg class="vector-shape w-12 h-12 top-24 right-[28%] md:block hidden text-neonCyan animate-float-slow" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M50,10 L55,40 L90,45 L55,50 L50,80 L45,50 L10,45 L45,40 Z" fill="rgba(0, 240, 255, 0.05)" />
+        </svg>
+
+        <!-- Drift Polygon (Bottom Center Right) -->
+        <svg class="vector-shape w-10 h-10 bottom-6 right-[22%] lg:block hidden text-neonPink animate-float-reverse" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="50,15 90,50 75,90 25,90 10,50" />
+        </svg>
+
+        <!-- Left Corner GAK: Blinking REC, 23.976 FPS, and ticking SMPTE Timecode -->
+        <div class="absolute top-4 left-4 hidden md:flex flex-col items-start font-mono text-[10px] text-neonCyan/70 select-none pointer-events-none space-y-1.5 z-20">
+            <div class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-neonPink animate-ping"></span>
+                <span class="text-neonPink uppercase tracking-widest font-black">REC</span>
+                <span class="text-purple-950/50">|</span>
+                <span class="font-tech text-slate-400">23.976 FPS</span>
+            </div>
+            <div class="flex items-center gap-1">
+                <span class="text-slate-500">TC:</span>
+                <span id="gak-timecode" class="text-slate-100 tracking-wider">10:25:44:12</span>
+            </div>
+            
+            <!-- Simulated SMPTE Color Bars (Glow Pulses on off-beat animation) -->
+            <div class="animate-color-pulse w-16 h-10 border border-purple-950/60 rounded overflow-hidden flex flex-col shadow-md mt-1.5">
+                <div class="flex h-3/4 w-full">
+                    <div class="w-[14.28%] h-full bg-[#EAEAEA]"></div>
+                    <div class="w-[14.28%] h-full bg-[#C1C100]"></div>
+                    <div class="w-[14.28%] h-full bg-[#00C1C1]"></div>
+                    <div class="w-[14.28%] h-full bg-[#00C100]"></div>
+                    <div class="w-[14.28%] h-full bg-[#C100C1]"></div>
+                    <div class="w-[14.28%] h-full bg-[#C10000]"></div>
+                    <div class="w-[14.28%] h-full bg-[#0000C1]"></div>
+                </div>
+                <div class="flex h-1/4 w-full">
+                    <div class="w-[14.28%] h-full bg-[#0000C1]"></div>
+                    <div class="w-[14.28%] h-full bg-[#131313]"></div>
+                    <div class="w-[14.28%] h-full bg-[#C100C1]"></div>
+                    <div class="w-[14.28%] h-full bg-[#131313]"></div>
+                    <div class="w-[14.28%] h-full bg-[#00C1C1]"></div>
+                    <div class="w-[14.28%] h-full bg-[#131313]"></div>
+                    <div class="w-[14.28%] h-full bg-[#ffffff]"></div>
+                </div>
+            </div>
+
+            <svg class="w-8 h-8 text-neonCyan/30 animate-spin mt-1.5" style="animation-duration: 12s;" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="2" stroke-dasharray="10 8" fill="none" />
+                <path d="M 50 10 L 50 25 M 50 90 L 50 75 M 10 50 L 25 50 M 90 50 L 75 50" stroke="currentColor" stroke-width="4" />
+            </svg>
+        </div>
+
+        <!-- Right Corner GAK: Dynamic Audio Levels & Viewfinder Scope -->
+        <div class="absolute top-4 right-4 hidden md:flex flex-col items-end font-mono text-[10px] text-neonPink/70 select-none pointer-events-none space-y-1.5 z-20">
+            <div class="flex items-center gap-1">
+                <span class="text-slate-500">CH 1/2:</span>
+                <div class="flex items-end gap-[1px] h-3 w-16 bg-brandBg/60 p-[1px] border border-purple-950/40">
+                    <div class="bg-neonCyan w-1.5 h-1 animate-pulse"></div>
+                    <div class="bg-neonCyan w-1.5 h-2.5 animate-pulse" style="animation-delay: 0.1s"></div>
+                    <div class="bg-neonCyan w-1.5 h-1.5 animate-pulse" style="animation-delay: 0.2s"></div>
+                    <div class="bg-neonPink w-1.5 h-3 animate-pulse" style="animation-delay: 0.3s"></div>
+                    <div class="bg-neonPink w-1.5 h-1.5 animate-pulse" style="animation-delay: 0.15s"></div>
+                </div>
+            </div>
+            <div class="text-right">
+                <span class="text-slate-500">MATRIX:</span>
+                <span class="text-laserYellow tracking-wider font-bold">AUTO_LEVELS</span>
+            </div>
+
+            <!-- TV Tech Text Monitor (Simulating typing loop terminal) -->
+            <div class="w-24 h-10 border border-neonCyan/30 bg-black/85 rounded p-1 font-mono text-[8px] text-green-400 overflow-hidden leading-tight flex flex-col justify-center mt-1.5 shadow-[inset_0_0_4px_rgba(0,240,255,0.25)] select-none">
+                <div id="tech-monitor-line1" class="text-neonCyan">SYS: ONLINE</div>
+                <div id="tech-monitor-line2" class="text-laserYellow truncate">V-LOCK: SYNC</div>
+            </div>
+
+            <!-- Interactive bounding box with bouncing tracking laser -->
+            <div class="relative w-12 h-6 border-r border-b border-neonPink/20 mt-1.5">
+                <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-neonPink/50"></div>
+                <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-neonPink/50"></div>
+                <div class="absolute w-full h-[1px] bg-neonPink/80 animate-bounce top-1/2"></div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center max-w-4xl relative z-10">
+            <!-- Headshot Image with glowing cyan ring -->
+            <div class="relative w-32 h-32 mx-auto mb-6">
+                <div class="absolute inset-0 rounded-full border-2 border-neonCyan blur-sm animate-pulse"></div>
+                <img src="Josh_Hunt_HS_Port.jpeg" alt="Josh Hunt Headshot"
+                     class="relative w-full h-full rounded-full border-2 border-neonCyan shadow-lg object-cover z-10">
+            </div>
+
+            <!-- Sleek Chrome Title -->
+            <h1 class="text-4xl md:text-6xl font-tech font-black tracking-wider mb-3 uppercase chrome-text">
+                Josh Hunt
+            </h1>
+            
+            <!-- Restructured balanced job titles -->
+            <p class="text-lg md:text-xl font-tech tracking-wide text-neonCyan mb-6 uppercase leading-relaxed">
+                Editor <span class="text-neonPink">✭</span> Visual Effects Editor<br>
+                Post-Production Specialist <span class="text-neonPink">✭</span> Videographer
+            </p>
+            
+            <div class="mt-4 text-sm font-tech tracking-widest flex justify-center gap-6">
+                <a href="https://www.linkedin.com/in/josh-hunt-pro/" target="_blank" class="btn-neon-cyan px-4 py-2 rounded uppercase text-xs font-bold">
+                    LinkedIn
+                </a>
+                <a href="mailto:joshhuntcontact@gmail.com" class="btn-neon-pink px-4 py-2 rounded uppercase text-xs font-bold">
+                    Email
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- Logo Gallery Section -->
-    <section class="bg-white py-8 md:py-12 shadow-inner">
+    <!-- Logo Gallery Section (Infinite Carousel - Height Shrunk for Balance) -->
+    <section class="relative z-10 py-10 border-b border-purple-950/40 bg-[#0d071c]/40 backdrop-blur-sm">
         <div class="container mx-auto px-6">
-            <h2 class="text-2xl md:text-3xl font-semibold text-center text-gray-700 mb-8">Projects I've Contributed To</h2>
-            <div class="logo-gallery flex overflow-x-auto pb-4 px-2 space-x-8 md:space-x-12 lg:space-x-16 justify-center md:justify-start">
-                <!-- Each logo container - REPLACE 'src' with your actual hosted image URLs and 'href' with correct trailer URLs -->
+            <h2 class="text-xs font-tech text-center tracking-widest text-neonCyan uppercase mb-8">
+                Projects I've Contributed To
+            </h2>
+            <div class="logo-gallery flex overflow-x-auto pb-4 px-2 space-x-6 md:space-x-8 lg:space-x-12 justify-center md:justify-start">
+                
+                <!-- Original Set of items -->
                 <div class="logo-item group">
                     <img src="WANDA-LOGO.jpg" alt="WandaVision Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=sj9J2ecsSpo" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('sj9J2ecsSpo')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="FEAR-LOGO.jpg" alt="Fear The Walking Dead Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=58j16ansB9M" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('58j16ansB9M')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="BROCKMIRE-LOGO.jpg" alt="Brockmire Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=MnhcD-wS9DU" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('MnhcD-wS9DU')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="SUPERGIRL-LOGO.jpg" alt="Supergirl Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=U1Xy5B1JoJ4" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('U1Xy5B1JoJ4')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="KR-LOGO.jpg" alt="Knight Rider Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=aLWoXE_py8Y" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('aLWoXE_py8Y')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="SITM-LOGO.jpg" alt="Stuck In The Middle Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=_VJjVDp7Jlc" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('_VJjVDp7Jlc')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="BTR-LOGO.jpg" alt="Big Time Rush Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=Amhv9JWB4ik" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('Amhv9JWB4ik')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TAK-LOGO.jpg" alt="The Autograph King Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=DHJwr11GhWw" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('DHJwr11GhWw')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TALES-LOGO.jpg" alt="Tales of The Walking Dead Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=3DqSLbCSt-M" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('3DqSLbCSt-M')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="100T-LOGO.jpg" alt="100 Things To Do Before High School Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=Ew73Zege9dc" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('Ew73Zege9dc')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="HENRY-LOGO.jpg" alt="Hardcore Henry Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=96EChBYVFhU" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('96EChBYVFhU')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="HAVEN-LOGO.jpg" alt="Haven Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=YB4v6fRVjf0&pp=0gcJCfwAo7VqN5tD" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('YB4v6fRVjf0')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="FVG-LOGO.jpg" alt="Frank vs. God Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=PNwkMWa4C2g" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('PNwkMWa4C2g')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="BAIT-LOGO.jpg" alt="Bait Car Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=elgPsBoAjxw" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('elgPsBoAjxw')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="DARK-LOGO.jpg" alt="Dark Country Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=7hfSMEFBJ3U" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('7hfSMEFBJ3U')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TCO-LOGO.jpg" alt="The Chosen One Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=PlLGz67m2jk" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('PlLGz67m2jk')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="SANDS-LOGO.jpg" alt="Red Sands Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=cU3lU8BTSls" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('cU3lU8BTSls')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TLW-LOGO.jpg" alt="The Last Word Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=r7SJyrKX64I" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('r7SJyrKX64I')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="YBF-LOGO.jpg" alt="Young Birds Fly Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=1UxA836jZ2Q" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('1UxA836jZ2Q')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
+
                 <!-- Duplicated Set of logo-items for seamless scroll -->
                 <div class="logo-item group">
                     <img src="WANDA-LOGO.jpg" alt="WandaVision Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=sj9J2ecsSpo" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('sj9J2ecsSpo')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="FEAR-LOGO.jpg" alt="Fear The Walking Dead Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=58j16ansB9M" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('58j16ansB9M')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="BROCKMIRE-LOGO.jpg" alt="Brockmire Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=MnhcD-wS9DU" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('MnhcD-wS9DU')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="SUPERGIRL-LOGO.jpg" alt="Supergirl Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=U1Xy5B1JoJ4" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('U1Xy5B1JoJ4')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="KR-LOGO.jpg" alt="Knight Rider Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=aLWoXE_py8Y" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('aLWoXE_py8Y')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="SITM-LOGO.jpg" alt="Stuck In The Middle Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=_VJjVDp7Jlc" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('_VJjVDp7Jlc')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="BTR-LOGO.jpg" alt="Big Time Rush Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=Amhv9JWB4ik" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('Amhv9JWB4ik')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TAK-LOGO.jpg" alt="The Autograph King Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=DHJwr11GhWw" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('DHJwr11GhWw')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TALES-LOGO.jpg" alt="Tales of The Walking Dead Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=3DqSLbCSt-M" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('3DqSLbCSt-M')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="100T-LOGO.jpg" alt="100 Things To Do Before High School Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=Ew73Zege9dc" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('Ew73Zege9dc')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="HENRY-LOGO.jpg" alt="Hardcore Henry Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=96EChBYVFhU" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('96EChBYVFhU')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="HAVEN-LOGO.jpg" alt="Haven Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=YB4v6fRVjf0&pp=0gcJCfwAo7VqN5tD" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('YB4v6fRVjf0')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="FVG-LOGO.jpg" alt="Frank vs. God Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=PNwkMWa4C2g" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('PNwkMWa4C2g')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="BAIT-LOGO.jpg" alt="Bait Car Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=elgPsBoAjxw" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('elgPsBoAjxw')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="DARK-LOGO.jpg" alt="Dark Country Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=7hfSMEFBJ3U" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('7hfSMEFBJ3U')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TCO-LOGO.jpg" alt="The Chosen One Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=PlLGz67m2jk" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('PlLGz67m2jk')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="SANDS-LOGO.jpg" alt="Red Sands Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=cU3lU8BTSls" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('cU3lU8BTSls')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="TLW-LOGO.jpg" alt="The Last Word Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=r7SJyrKX64I" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('r7SJyrKX64I')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="logo-item group">
                     <img src="YBF-LOGO.jpg" alt="Young Birds Fly Logo">
                     <div class="logo-overlay">
-                        <a href="https://www.youtube.com/watch?v=1UxA836jZ2Q" target="_blank" rel="noopener noreferrer" class="text-white text-sm md:text-base font-bold px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                        <button onclick="openModal('1UxA836jZ2Q')" class="btn-neon-cyan font-tech text-sm font-bold rounded-full">
                             View Trailer
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -452,166 +708,339 @@
     </section>
 
     <!-- Main Content Area -->
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 py-16 relative z-10 max-w-6xl">
 
         <!-- Introduction / About Section -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-semibold section-title">About Me</h2>
-            <p class="text-lg leading-relaxed mb-4">
-                Welcome and thank you for taking interest in viewing this curated sampling of my accomplishments! With over 15 years of comprehensive experience in dynamic production environments, spanning broadcast, film, and digital media, I bring a unique blend of creative vision and technical expertise to every project. My work focuses on capturing high-quality footage, executing creative visions, and delivering polished content under pressure.
-            </p>
-            <p class="text-lg leading-relaxed">
-                This portfolio showcases a selection of my work, including videography, video editing, and visual effects editing. Due to the nature of some past projects (NDAs, specific roles within large teams), I've included a mix of finished pieces and detailed case studies to illustrate my process, problem-solving abilities, and technical workflows.
-            </p>
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-8">
+                <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
+                    About Me
+                </h2>
+                <div class="laser-line w-24 h-[2px] mt-2 hidden md:block"></div>
+            </div>
+            
+            <div class="space-y-6 text-slate-300 text-lg font-light leading-relaxed">
+                <p>
+                    Welcome and thank you for taking interest in viewing this curated sampling of my accomplishments! With over <span class="text-neonPink font-medium">15 years of comprehensive experience</span> in dynamic production environments, spanning broadcast, film, and digital media, I bring a unique blend of creative vision and technical expertise to every project. My work focuses on capturing high-quality footage, executing creative visions, and delivering polished content under pressure.
+                </p>
+                <p>
+                    This portfolio showcases a selection of my work, including videography, video editing, and visual effects editing. Due to the nature of some past projects (NDAs, specific roles within large teams), I've included a mix of finished pieces and detailed case studies to illustrate my process, problem-solving abilities, and technical workflows.
+                </p>
+            </div>
         </section>
 
         <!-- Featured Projects Section -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-semibold section-title">Featured Projects</h2>
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-12">
+                <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
+                    Featured Projects
+                </h2>
+                <div class="laser-line w-24 h-[2px] mt-2 hidden md:block"></div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Project Card 1: Short-Form Video -->
-                <div class="project-card p-6">
-                    <img src="Social_Logos.png" alt="Social Logos" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">Social Media</h3>
-                    <p class="text-gray-600 mb-3">
-                        A collection of my latest cyber-content.
-                    </p>
-                    <a href="Content-Hub.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
-                </div>
-                
-                <!-- Project Card 2: The Autograph King (Freelance Film Editor) -->
-                <div class="project-card p-6">
-                    <img src="TAK.png" alt="The Autograph King" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">The Autograph King</h3>
-                    <p class="text-gray-600 mb-3">
-                        Co-produced and edited an entertaining and joyful documentary from over a year of multi-format footage.
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Role:** Freelance Film Editor, Co-Producer</p>
-                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Post-Production Workflow Management, Technical Troubleshooting, Narrative Editing</p>
-                    <a href="Case-Study-TAK.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
+                <!-- Project Card 1: The Autograph King -->
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="TAK.png" alt="The Autograph King" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-laserYellow tracking-wider">FEATURE DOCUMENTARY</span>
+                            <span class="text-xs font-mono text-slate-500">2025</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">The Autograph King</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Co-produced and edited an entertaining and joyful documentary from over a year of multi-format footage, managing the entire post-production workflow independently.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Freelance Film Editor, Co-Producer</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">Workflow Management, Technical Troubleshooting, Narrative Editing</p>
+                        <a href="Case-Study-TAK.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
                 </div>
 
-                <!-- Project Card 3: WandaVision (VFX Editor) - REVISED -->
-                <div class="project-card p-6">
-                    <!-- Suggest using an official show image or a placeholder that implies high-profile -->
-                    <img src="WandaVision.webp" alt="WandaVision" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">WandaVision (Marvel Studios)</h3>
-                    <p class="text-gray-600 mb-3">
-                        As a Visual Effects Editor, I demonstrated exceptional organizational skills managing 10 simultaneous VFX projects for this high-profile Marvel series. My work involved meticulous tracking and integration of complex visual elements, contributing to the show's acclaimed visual narrative under strict deadlines.
-                        <br><br>
-                        *Due to strict studio confidentiality, proprietary assets cannot be displayed. A detailed case study outlining my process, challenges, and impact is available upon request.*
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Role:** Visual Effects Editor</p>
-                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Digital Compositing, Project Management, Workflow Optimization, Attention to Detail, Confidentiality Management</p>
-                    <!-- Link to an official trailer or a text-based case study -->
-                    <a href="case-study-wanda.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
+                <!-- Project Card 2: WandaVision (VFX Editor) -->
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="WandaVision.webp" alt="WandaVision" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-neonPink tracking-wider">MARVEL STUDIOS</span>
+                            <span class="text-xs font-mono text-slate-500">DISNEY+</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">WandaVision</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            As a Visual Effects Editor, I demonstrated exceptional organizational skills managing 10 simultaneous VFX projects for this high-profile Marvel series. My work involved meticulous tracking and integration of complex visual elements, contributing to the show's acclaimed visual narrative under strict deadlines.
+                            <br><br>
+                            <span class="text-xs text-slate-500 font-mono italic block">*Due to strict studio confidentiality, proprietary assets cannot be displayed. A detailed case study is available.*</span>
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Visual Effects Editor</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">Digital Compositing, Project Management, Workflow Optimization, Confidentiality</p>
+                        <a href="case-study-wanda.html" class="btn-neon-pink w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
                 </div>
 
-                <!-- Project Card 4: Moore Productions (Videographer & Editor) -->
-                <div class="project-card p-6">
-                    <img src="Moore.png" alt="Moore Productions" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">Moore Productions</h3>
-                    <p class="text-gray-600 mb-3">
-                        Managed all aspects of video production from conception to delivery in a two-person operation.
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Role:** Videographer & Editor</p>
-                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Field Production, Lighting, Audio Recording, Video Editing, Motion Graphics, Equipment Maintenance</p>
-                    <a href="Case-Study-Moore.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
+                <!-- Project Card 3: Moore Productions (Videographer & Editor) -->
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="Moore.png" alt="Moore Productions" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-laserYellow tracking-wider">BROADCAST COMMERCIAL</span>
+                            <span class="text-xs font-mono text-slate-500">HISTORIC</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">Moore Productions</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Collaborated directly with Telly Award-winning producer in a two-person operation, managing all aspects of video production from conception to delivery.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Videographer & Editor</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">Field Production, Lighting, Audio Recording, Video Editing, Motion Graphics</p>
+                        <a href="Case-Study-Moore.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
                 </div>
-
-                <!-- Add more project cards as needed, following the same structure -->
 
             </div>
         </section>
 
         <!-- Process & Case Studies Section -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-semibold section-title">Process & Case Studies</h2>
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-12">
+                <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
+                    Process & Case Studies
+                </h2>
+                <div class="laser-line w-24 h-[2px] mt-2 hidden md:block"></div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <!-- Case Study 1: Media Management & Archiving -->
-                <div class="project-card p-6">
-                    <img src="Brockmire.jpg" alt="Brockmire" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">Streamlining Media Management</h3>
-                    <p class="text-gray-600 mb-3">
-                        Detailed overview of how I managed and organized extensive footage for complex TV series.
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Focus:** Workflow Optimization, Quality Control, Efficiency Gains</p>
-                    <a href="Case-Study-Media.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="Brockmire.jpg" alt="Brockmire" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-neonPink tracking-wider">WORKFLOW ENGAGEMENT</span>
+                            <span class="text-xs font-mono text-slate-500">MAM & SERVER</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">Streamlining Media Management</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Detailed overview of how I managed and organized extensive footage for complex television series, streamlining media pipelines and leading to an average efficiency increase of 2 hours per day.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-2 font-tech"><span class="text-neonCyan">FOCUS:</span> Workflow Optimization, Quality Control, Efficiency Gains</p>
+                        <a href="Case-Study-Media.html" class="btn-neon-pink w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
                 </div>
 
                 <!-- Case Study 2: VFX Shot Delivery Workflow -->
-                <div class="project-card p-6">
-                    <img src="ftwd.jpg" alt="Fear The Walking Dead" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">VFX Shot Delivery Workflow</h3>
-                    <p class="text-gray-600 mb-3">
-                        An in-depth look at my process for meticulously tracking and delivering 70-100+ visual effects shots per episode under tight deadlines, utilizing FileMaker Pro for visual effect shot elements.
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Focus:** Technical Execution, Database Management, Deadline Adherence</p>
-                    <a href="Case-Study-VFX.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="ftwd.jpg" alt="Fear The Walking Dead" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-neonCyan tracking-wider">DATABASE SYSTEM</span>
+                            <span class="text-xs font-mono text-slate-500">FILEMAKER PRO</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">VFX Shot Delivery Workflow</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            An in-depth look at my process for meticulously tracking and delivering 70-100+ visual effects shots per episode under tight deadlines, utilizing FileMaker Pro for visual effect shot elements.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-2 font-tech"><span class="text-neonCyan">FOCUS:</span> Technical Execution, Database Management, Deadline Adherence</p>
+                        <a href="Case-Study-VFX.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
                 </div>
-
-                <!-- Add more case studies or process breakdowns here -->
 
             </div>
         </section>
 
-        <!-- Personal Projects Section (Optional, if you want to highlight separately) -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-semibold section-title">Personal & Learning Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Personal Projects Section -->
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-12">
+                <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
+                    Personal & Learning Projects
+                </h2>
+                <div class="laser-line w-24 h-[2px] mt-2 hidden md:block"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Personal Project 1: E-Commerce Shop Owner -->
-                <div class="project-card p-6">
-                    <img src="Horizon-Forest-Shop-Banner.png" alt="Horizon Frameworks" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">E-Commerce Shop Owner (Etsy)</h3>
-                    <p class="text-gray-600 mb-3">
-                        Applied prompt engineering and image editing in Midjourney to create designs and established an Etsy shop for online sales.
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Role:** Shop Manager/Designer</p>
-                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Prompt Engineering, Image Editing, Branding, Project Management</p>
-                    <a href="Case-Study-E-Commerce.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="Horizon-Forest-Shop-Banner.png" alt="Horizon Frameworks" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-laserYellow tracking-wider">DESIGN EXERCISE</span>
+                            <span class="text-xs font-mono text-slate-500">MIDJOURNEY</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">E-Commerce Shop Owner (Etsy)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Applied prompt engineering and image editing in Midjourney to create designs and established an Etsy shop, leveraging Canva and Photoshop for consistent branding and visual assets.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Shop Manager / Designer</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono font-light">Prompt Engineering, Image Editing, Branding, Project Management</p>
+                        <a href="Case-Study-E-Commerce.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
                 </div>
 
                 <!-- Personal Project 2: Content Creator -->
-                <div class="project-card p-6">
-                    <img src="YouTubeGFX.jpg" alt="Content Creator" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">Content Creator </h3>
-                    <p class="text-gray-600 mb-3">
-                        Managed and designed YouTube and Vimeo channels from scratch, showcasing creations with AI and various online resources.
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Role:** Channel Manager/Designer/Editor</p>
-                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** AI Content Generation, Video Production, SEO, DaVinci Resolve</p>
-                    <a href="Case-Study-Content.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">Learn More</a>
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="YouTubeGFX.jpg" alt="Content Creator" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-neonPink tracking-wider">SEO & REACH</span>
+                            <span class="text-xs font-mono text-slate-500">DIGITAL BRAND</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">Content Creator</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Managed and designed YouTube and Vimeo channels from scratch, showcasing creations with AI and various online resources. Researched Free Online Resources and learned basic SEO for YouTube.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Channel Manager / Designer / Editor</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono font-light">AI Content Generation, Video Production, SEO, DaVinci Resolve</p>
+                        <a href="Case-Study-Content.html" class="btn-neon-pink w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
                 </div>
-                <!-- Add more personal projects here -->
 
-                <!-- NEW Project Card: Additional Video Projects -->
-                <div class="project-card p-6">
-                    <img src="Collage.png" alt="Additional Video Projects" class="w-full h-auto rounded-lg mb-4 object-cover">
-                    <h3 class="text-xl font-bold mb-2">Additional Video Projects</h3>
-                    <p class="text-gray-600 mb-3">
-                        A collection of various video projects showcasing diverse skills in video production, editing, and storytelling.
-                    </p>
-                    <p class="text-sm text-gray-700 mb-2">**Focus:** Diverse Video Production, Editing, Storytelling</p>
-                    <p class="text-sm text-gray-700 mb-4">**Skills Used:** Videography, Video Editing, Sound Design, Motion Graphics</p>
-                    <a href="additional.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-200">View Projects</a>
+                <!-- Personal Project 3: Additional Video Projects -->
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="Collage.png" alt="Additional Video Projects" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-neonCyan tracking-wider">COLLAGE OVERVIEW</span>
+                            <span class="text-xs font-mono text-slate-500">VARIOUS FILES</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">Additional Video Projects</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            A collection of various video projects showcasing diverse skills in video production, editing, and storytelling.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">FOCUS:</span> Diverse Video Production, Editing, Storytelling</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono font-light">Videography, Video Editing, Sound Design, Motion Graphics</p>
+                        <a href="additional.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">View Projects</a>
+                    </div>
                 </div>
-           
+
+            </div>
+        </section>
+
+        <!-- Easter Egg Retro 8-Bit Game Cabinet -->
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-neonCyan animate-pulse"></span>
+                    <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
+                        System Easter Egg
+                    </h2>
+                </div>
+                <button onclick="toggleArcade()" class="btn-neon-pink px-4 py-1.5 rounded text-xs font-tech font-bold uppercase transition">
+                    [ INITIATE SYSTEM OVERRIDE ]
+                </button>
+            </div>
+
+            <!-- Arcade Cabinet sliding terminal box -->
+            <div id="arcade-console" class="hidden border-2 border-neonCyan rounded-lg bg-black/95 p-6 relative overflow-hidden">
+                <div class="absolute top-2 left-4 font-mono text-[10px] text-neonCyan/60">NEON-ASTEROIDS // SECTOR: SHANNON_HUNT</div>
+                <div class="absolute top-2 right-4 font-mono text-[10px] text-neonPink/60">HIGH SCORE: <span id="game-highscore">00000</span></div>
+                
+                <div class="flex flex-col lg:flex-row gap-6 items-center mt-4">
+                    <!-- Left: HTML5 Game Canvas -->
+                    <div class="relative w-full max-w-[500px] aspect-[4/3] border border-purple-950 rounded overflow-hidden">
+                        <canvas id="arcade-canvas" class="w-full h-full"></canvas>
+                        <!-- Start / Game Over Screens -->
+                        <div id="game-overlay" class="absolute inset-0 bg-black/90 flex flex-col items-center justify-center text-center p-6 z-10">
+                            <h3 id="overlay-title" class="font-tech text-2xl text-laserYellow mb-3 tracking-widest">INSERT COIN</h3>
+                            <p id="overlay-desc" class="text-xs text-slate-400 mb-6 font-mono">DESTROY THE WIREFRAME INTERFERENCES TO SECURE THE TIMELINE</p>
+                            <button onclick="startGame()" class="btn-neon-cyan px-6 py-2.5 rounded font-tech font-bold text-sm tracking-wider uppercase">
+                                START OPERATIONS
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Game Controls, Specs, & Synth Diagnostics -->
+                    <div class="flex-1 w-full space-y-4">
+                        <div class="border border-purple-950/50 bg-[#120a24]/50 p-4 rounded-md">
+                            <h4 class="font-tech text-xs text-neonPink tracking-widest mb-3 uppercase">Arcade Operational Manual</h4>
+                            <ul class="text-xs font-mono text-slate-300 space-y-2">
+                                <li><strong class="text-neonCyan">ROTATE SHIP:</strong> <span class="bg-black/60 px-1.5 py-0.5 rounded border border-purple-950">LEFT / RIGHT ARROW KEYS</span></li>
+                                <li><strong class="text-neonCyan">THRUST SYSTEM:</strong> <span class="bg-black/60 px-1.5 py-0.5 rounded border border-purple-950">UP ARROW KEY</span></li>
+                                <li><strong class="text-neonCyan">WEAPONS DISCHARGE:</strong> <span class="bg-black/60 px-1.5 py-0.5 rounded border border-purple-950">SPACEBAR</span></li>
+                                <li class="pt-2 text-laserYellow italic border-t border-purple-950/20">*Web Audio API synth is fully loaded. Keep speakers unmuted for 8-bit sound fx!*</li>
+                            </ul>
+                        </div>
+
+                        <!-- On-Screen Mobile Arcade D-Pad (Touch Compatibility Target) -->
+                        <div class="lg:hidden grid grid-cols-4 gap-2 w-full max-w-[320px] mx-auto pt-2">
+                            <button id="touch-left" class="bg-slate-900 border border-purple-950/50 text-slate-300 active:bg-neonCyan active:text-black py-4 rounded text-center font-bold text-sm select-none">◀ ROT</button>
+                            <button id="touch-thrust" class="bg-slate-900 border border-purple-950/50 text-slate-300 active:bg-neonPink active:text-black py-4 rounded text-center font-bold text-sm select-none">▲ THRUST</button>
+                            <button id="touch-right" class="bg-slate-900 border border-purple-950/50 text-slate-300 active:bg-neonCyan active:text-black py-4 rounded text-center font-bold text-sm select-none">ROT ▶</button>
+                            <button id="touch-fire" class="bg-neonPink/20 border border-neonPink text-neonPink active:bg-neonPink active:text-black py-4 rounded text-center font-tech font-bold text-sm select-none">FIRE</button>
+                        </div>
+
+                        <div class="border border-purple-950/30 bg-[#0d041a]/30 p-4 rounded-md flex justify-between items-center text-xs font-mono">
+                            <div>
+                                <span class="text-slate-500 block">SCORE BOARD:</span>
+                                <span id="game-score" class="text-2xl text-neonCyan tracking-wider font-bold">00000</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-slate-500 block">SYSTEM LOAD:</span>
+                                <span class="text-laserYellow">SYNTH_ACTIVE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
 
+    <!-- Sleek Video Player Overlay Modal (Design Contained with youtube-nocookie and direct link fallback) -->
+    <div id="video-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 opacity-0 pointer-events-none transition-all duration-300">
+        <!-- Close trigger background -->
+        <div class="absolute inset-0 cursor-pointer" onclick="closeModal()"></div>
+        
+        <div class="relative w-full max-w-4xl mx-4 bg-[#0d071c] border-2 border-neonCyan rounded-lg shadow-[0_0_50px_rgba(0,240,255,0.3)] overflow-hidden scale-90 transition-transform duration-300" id="modal-container">
+            <!-- Header bar of the modal -->
+            <div class="flex justify-between items-center bg-[#07020d] border-b border-purple-950/50 px-4 py-3 text-xs font-tech tracking-widest select-none">
+                <span class="text-neonCyan">SYSTEM_PLAYBACK // SECURED_STREAM</span>
+                <div class="flex items-center gap-4">
+                    <a id="modal-direct-link" href="" target="_blank" class="text-laserYellow hover:underline font-bold text-xs uppercase flex items-center gap-1">
+                        Open on YouTube ↗
+                    </a>
+                    <span class="text-slate-700">|</span>
+                    <button onclick="closeModal()" class="text-neonPink hover:text-white font-bold text-xs transition">✕ CLOSE</button>
+                </div>
+            </div>
+            
+            <!-- Video frame container with correct Aspect Ratio -->
+            <div class="relative aspect-video w-full bg-black">
+                <iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2026 Josh Hunt. All rights reserved.</p>
-            <p class="mt-2">Connect with me: <a href="https://www.linkedin.com/in/josh-hunt-pro/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> | <a href="mailto:joshhuntcontact@gmail.com" class="text-blue-400 hover:underline">Email</a></p>
+    <footer class="relative z-10 border-t border-purple-950/40 bg-brandBg py-12">
+        <div class="container mx-auto px-6 text-center max-w-xl">
+            <p class="text-xs font-tech text-slate-500 uppercase tracking-widest mb-4">SYSTEM INTERFACE COMPLETE</p>
+            <p class="text-slate-400 text-sm">&copy; 2026 Josh Hunt. All rights reserved.</p>
+            <p class="mt-4 text-xs font-tech text-slate-500 uppercase tracking-wider">
+                Connect with me: 
+                <a href="https://www.linkedin.com/in/josh-hunt-pro/" target="_blank" class="text-neonCyan hover:underline mx-2">LinkedIn</a> 
+                <span class="text-slate-700">|</span> 
+                <a href="mailto:joshhuntcontact@gmail.com" class="text-neonPink hover:underline mx-2">Email</a>
+            </p>
         </div>
     </footer>
 
+    <!-- Script for the infinite carousel slider & GAK parameters & Neon Asteroids Game -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const logoGallery = document.querySelector('.logo-gallery');
@@ -619,7 +1048,6 @@
             const scrollInterval = 20; // Milliseconds between scroll updates
 
             // Calculate the width of the original content (assuming it's exactly half of the total scrollWidth)
-            // This is crucial for seamless looping.
             const originalContentWidth = logoGallery.scrollWidth / 2;
 
             function autoScroll() {
@@ -630,7 +1058,6 @@
                     // If we have scrolled past the original content (into the duplicated content)
                     if (logoGallery.scrollLeft >= originalContentWidth) {
                         // Instantly reset scroll position back to the beginning of the duplicated content
-                        // This creates the illusion of an infinite loop
                         logoGallery.scrollLeft = logoGallery.scrollLeft - originalContentWidth;
                     }
                 }
@@ -649,7 +1076,504 @@
                     scrollTimer = setInterval(autoScroll, scrollInterval);
                 });
             }
+
+            // SMPTE Timecode Ticker loop (runs at 24fps)
+            let hours = 10, minutes = 25, seconds = 44, frames = 12;
+            const timecodeEl = document.getElementById('gak-timecode');
+            if (timecodeEl) {
+                setInterval(() => {
+                    frames++;
+                    if (frames >= 24) {
+                        frames = 0;
+                        seconds++;
+                        if (seconds >= 60) {
+                            seconds = 0;
+                            minutes++;
+                            if (minutes >= 60) {
+                                minutes = 0;
+                                hours++;
+                                if (hours >= 24) {
+                                    hours = 0;
+                                }
+                            }
+                        }
+                    }
+                    const pad = (num) => String(num).padStart(2, '0');
+                    timecodeEl.innerText = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
+                }, 1000 / 24);
+            }
+
+            // TV Tech Monitor loops
+            const monitorLines = [
+                ["SYS: ONLINE", "V-LOCK: SYNC"],
+                ["CONFORM: PASS", "FRAME: 23.976"],
+                ["MAM_LNK: READY", "GENLOCK: IN-PHS"],
+                ["DB_CONN: SECURE", "SMPTE: LOCK"],
+                ["AUDIO_REST: OK", "PEAK: -12.4dB"],
+                ["VFX_BURN: COMP", "ASSET: conform_r2"]
+            ];
+            let monitorIndex = 0;
+            const line1 = document.getElementById('tech-monitor-line1');
+            const line2 = document.getElementById('tech-monitor-line2');
+            if (line1 && line2) {
+                setInterval(() => {
+                    monitorIndex = (monitorIndex + 1) % monitorLines.length;
+                    line1.innerText = monitorLines[monitorIndex][0];
+                    line2.innerText = monitorLines[monitorIndex][1];
+                }, 3200);
+            }
         });
+
+        // ==========================================================================
+        // retro dynamic pop-up modal logic for video players (youtube-nocookie)
+        // ==========================================================================
+        const modal = document.getElementById('video-modal');
+        const modalContainer = document.getElementById('modal-container');
+        const iframe = document.getElementById('modal-iframe');
+        const directLink = document.getElementById('modal-direct-link');
+
+        function openModal(youtubeId) {
+            // OPTIMIZATION: Using youtube-nocookie domain to bypass local file (file://) security and cookie locks!
+            const videoUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
+            iframe.src = videoUrl;
+
+            // Set the fallback button to direct URL
+            directLink.href = `https://www.youtube.com/watch?v=${youtubeId}`;
+
+            // Trigger smooth CSS transitions
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-90');
+            modalContainer.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            // First collapse transitions
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-90');
+
+            // Force unload the iframe so the YouTube audio stream hard-stops immediately
+            iframe.src = '';
+        }
+
+        // Close on escape key press
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ==========================================================================
+        // retro arcade easter egg: neon asteroids game engine
+        // ==========================================================================
+        let gameActive = false;
+        let score = 0;
+        let highScore = parseInt(localStorage.getItem('josh_asteroids_highscore') || '0');
+        document.getElementById('game-highscore').innerText = String(highScore).padStart(5, '0');
+
+        const canvas = document.getElementById('arcade-canvas');
+        const ctx = canvas.getContext('2d');
+        const overlay = document.getElementById('game-overlay');
+        const overlayTitle = document.getElementById('overlay-title');
+        const overlayDesc = document.getElementById('overlay-desc');
+
+        // Web Audio Synthesizer Context (Real 8-bit sound effects)
+        let audioCtx = null;
+        function playSynthSound(frequency, duration, type = 'square', sweep = false) {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = type;
+                osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+                if (sweep) {
+                    osc.frequency.exponentialRampToValueAtTime(frequency / 4, audioCtx.currentTime + duration);
+                }
+
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function toggleArcade() {
+            const consoleBox = document.getElementById('arcade-console');
+            consoleBox.classList.toggle('hidden');
+            if (!consoleBox.classList.contains('hidden')) {
+                resizeCanvas();
+                consoleBox.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                gameActive = false;
+            }
+        }
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', () => { if (gameActive) resizeCanvas(); });
+
+        // Game state variables
+        let ship, asteroids, lasers, particles, keys;
+
+        // Keys monitor
+        keys = {};
+        window.addEventListener('keydown', (e) => {
+            if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                e.preventDefault(); // Stop window space scroll
+            }
+            keys[e.code] = true;
+        });
+        window.addEventListener('keyup', (e) => { keys[e.code] = false; });
+
+        // Touch Control Monitors (Multi-touch aware for action gameplay)
+        const touchBtns = {
+            'touch-left': 'ArrowLeft',
+            'touch-right': 'ArrowRight',
+            'touch-thrust': 'ArrowUp',
+            'touch-fire': 'Space'
+        };
+
+        Object.keys(touchBtns).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    keys[touchBtns[id]] = true;
+                    if (id === 'touch-fire' && gameActive) fireLaser();
+                });
+                el.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    keys[touchBtns[id]] = false;
+                });
+            }
+        });
+
+        class Ship {
+            constructor() {
+                this.x = canvas.width / 2;
+                this.y = canvas.height / 2;
+                this.r = 10;
+                this.angle = -Math.PI / 2;
+                this.rotSpeed = 0.08;
+                this.thrust = 0.15;
+                this.friction = 0.985;
+                this.vx = 0;
+                this.vy = 0;
+            }
+
+            draw() {
+                ctx.strokeStyle = '#00f0ff';
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#00f0ff';
+                ctx.beginPath();
+                ctx.moveTo(
+                    this.x + 4/3 * this.r * Math.cos(this.angle),
+                    this.y + 4/3 * this.r * Math.sin(this.angle)
+                );
+                ctx.lineTo(
+                    this.x - this.r * (2/3 * Math.cos(this.angle) + Math.sin(this.angle)),
+                    this.y - this.r * (2/3 * Math.sin(this.angle) - Math.cos(this.angle))
+                );
+                ctx.lineTo(
+                    this.x - this.r * (2/3 * Math.cos(this.angle) - Math.sin(this.angle)),
+                    this.y - this.r * (2/3 * Math.sin(this.angle) + Math.cos(this.angle))
+                );
+                ctx.closePath();
+                ctx.stroke();
+
+                // Thrust tail light
+                if (keys['ArrowUp'] || keys['KeyW']) {
+                    ctx.strokeStyle = '#ff007f';
+                    ctx.shadowColor = '#ff007f';
+                    ctx.beginPath();
+                    ctx.moveTo(
+                        this.x - this.r * 1.5 * Math.cos(this.angle),
+                        this.y - this.r * 1.5 * Math.sin(this.angle)
+                    );
+                    ctx.lineTo(
+                        this.x - this.r * 0.5 * (Math.cos(this.angle) + Math.sin(this.angle)),
+                        this.y - this.r * 0.5 * (Math.sin(this.angle) - Math.cos(this.angle))
+                    );
+                    ctx.lineTo(
+                        this.x - this.r * 0.5 * (Math.cos(this.angle) - Math.sin(this.angle)),
+                        this.y - this.r * 0.5 * (Math.sin(this.angle) + Math.cos(this.angle))
+                    );
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+                ctx.shadowBlur = 0; // Reset
+            }
+
+            update() {
+                if (keys['ArrowLeft'] || keys['KeyA']) this.angle -= this.rotSpeed;
+                if (keys['ArrowRight'] || keys['KeyD']) this.angle += this.rotSpeed;
+
+                if (keys['ArrowUp'] || keys['KeyW']) {
+                    this.vx += this.thrust * Math.cos(this.angle);
+                    this.vy += this.thrust * Math.sin(this.angle);
+                    if (Math.random() < 0.15) playSynthSound(80, 0.05, 'triangle');
+                }
+
+                this.vx *= this.friction;
+                this.vy *= this.friction;
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Screen wraps
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+        }
+
+        class Asteroid {
+            constructor(x, y, radius, level = 3) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || Math.random() * canvas.height;
+                this.r = radius || 30;
+                this.level = level; // 3 big, 2 medium, 1 small
+                this.speed = (4 - this.level) * 0.8 + 0.2;
+                this.angle = Math.random() * Math.PI * 2;
+                this.vx = Math.cos(this.angle) * this.speed;
+                this.vy = Math.sin(this.angle) * this.speed;
+                this.sides = Math.floor(Math.random() * 5) + 7;
+                this.offsets = [];
+                for (let i = 0; i < this.sides; i++) {
+                    this.offsets.push(Math.random() * 0.4 + 0.8); // Random geometry outline
+                }
+            }
+
+            draw() {
+                ctx.strokeStyle = '#ffee00';
+                ctx.lineWidth = 1.5;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = '#ffee00';
+                ctx.beginPath();
+                ctx.moveTo(
+                    this.x + this.r * this.offsets[0] * Math.cos(0),
+                    this.y + this.r * this.offsets[0] * Math.sin(0)
+                );
+                for (let i = 1; i < this.sides; i++) {
+                    let angle = (i / this.sides) * Math.PI * 2;
+                    ctx.lineTo(
+                        this.x + this.r * this.offsets[i] * Math.cos(angle),
+                        this.y + this.r * this.offsets[i] * Math.sin(angle)
+                    );
+                }
+                ctx.closePath();
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Screen wraps
+                if (this.x < -this.r) this.x = canvas.width + this.r;
+                if (this.x > canvas.width + this.r) this.x = -this.r;
+                if (this.y < -this.r) this.y = canvas.height + this.r;
+                if (this.y > canvas.height + this.r) this.y = -this.r;
+            }
+        }
+
+        class Laser {
+            constructor(x, y, angle) {
+                this.x = x;
+                this.y = y;
+                this.speed = 7;
+                this.vx = Math.cos(angle) * this.speed;
+                this.vy = Math.sin(angle) * this.speed;
+                this.life = 60; // Frames to survive
+            }
+
+            draw() {
+                ctx.strokeStyle = '#00f0ff';
+                ctx.lineWidth = 3;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#00f0ff';
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x - this.vx * 1.5, this.y - this.vy * 1.5);
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life--;
+            }
+        }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 4;
+                this.vy = (Math.random() - 0.5) * 4;
+                this.color = color;
+                this.life = 30 + Math.random() * 20;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, 2, 2);
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life--;
+            }
+        }
+
+        function fireLaser() {
+            if (!gameActive) return;
+            lasers.push(new Laser(ship.x, ship.y, ship.angle));
+            playSynthSound(440, 0.1, 'sawtooth');
+        }
+
+        // Throttle rapid spacebar spamming
+        let lastSpaceState = false;
+
+        function startGame() {
+            overlay.classList.add('hidden');
+            resizeCanvas();
+            score = 0;
+            document.getElementById('game-score').innerText = '00000';
+            
+            ship = new Ship();
+            asteroids = [];
+            lasers = [];
+            particles = [];
+            
+            // Pop big initial asteroids
+            for (let i = 0; i < 4; i++) {
+                asteroids.push(new Asteroid());
+            }
+
+            gameActive = true;
+            playSynthSound(150, 0.4, 'sine');
+            requestAnimationFrame(gameLoop);
+        }
+
+        function gameOver() {
+            gameActive = false;
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('josh_asteroids_highscore', highScore);
+                document.getElementById('game-highscore').innerText = String(highScore).padStart(5, '0');
+            }
+            overlayTitle.innerText = "GAME OVER";
+            overlayDesc.innerHTML = `YOUR FINAL SYSTEM DECK INTEGRITY SCORE: <strong class="text-neonCyan">${score}</strong>`;
+            overlay.classList.remove('hidden');
+            playSynthSound(100, 0.8, 'sawtooth', true);
+        }
+
+        function gameLoop() {
+            if (!gameActive) return;
+
+            // Clear Screen
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Handle Shot Action
+            if (keys['Space']) {
+                if (!lastSpaceState) {
+                    fireLaser();
+                    lastSpaceState = true;
+                }
+            } else {
+                lastSpaceState = false;
+            }
+
+            // Update & Draw Ship
+            ship.update();
+            ship.draw();
+
+            // Handle Lasers
+            for (let i = lasers.length - 1; i >= 0; i--) {
+                lasers[i].update();
+                lasers[i].draw();
+
+                if (lasers[i].life <= 0) {
+                    lasers.splice(i, 1);
+                }
+            }
+
+            // Handle Particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].life <= 0) particles.splice(i, 1);
+            }
+
+            // Update & Draw Asteroids
+            for (let i = asteroids.length - 1; i >= 0; i--) {
+                let ast = asteroids[i];
+                ast.update();
+                ast.draw();
+
+                // Check Ship Collision
+                let dist = Math.hypot(ship.x - ast.x, ship.y - ast.y);
+                if (dist < ship.r + ast.r) {
+                    // Explosion particles
+                    for (let p = 0; i < 40; i++) {
+                        particles.push(new Particle(ship.x, ship.y, '#00f0ff'));
+                    }
+                    gameOver();
+                    return;
+                }
+
+                // Laser Collisions
+                for (let j = lasers.length - 1; j >= 0; j--) {
+                    let laser = lasers[j];
+                    let shotDist = Math.hypot(laser.x - ast.x, laser.y - ast.y);
+                    if (shotDist < ast.r) {
+                        // Explode sound
+                        playSynthSound(300 - (ast.level * 50), 0.25, 'triangle', true);
+
+                        // Splitting Logic
+                        score += (4 - ast.level) * 10;
+                        document.getElementById('game-score').innerText = String(score).padStart(5, '0');
+
+                        // Burst elements
+                        for (let p = 0; p < 15; p++) {
+                            particles.push(new Particle(ast.x, ast.y, '#ffee00'));
+                        }
+
+                        if (ast.level > 1) {
+                            asteroids.push(new Asteroid(ast.x, ast.y, ast.r / 2, ast.level - 1));
+                            asteroids.push(new Asteroid(ast.x, ast.y, ast.r / 2, ast.level - 1));
+                        }
+
+                        asteroids.splice(i, 1);
+                        lasers.splice(j, 1);
+                        break;
+                    }
+                }
+            }
+
+            // Repopulate if all asteroids are destroyed (Next level)
+            if (asteroids.length === 0) {
+                for (let i = 0; i < 5; i++) {
+                    asteroids.push(new Asteroid());
+                }
+                playSynthSound(600, 0.3, 'sine');
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
     </script>
 
 </body>
