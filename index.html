@@ -100,13 +100,16 @@
         .logo-gallery {
             width: max-content;
             animation: logo-scroll 100s linear infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+            --loop-distance: 50%;
         }
         .logo-gallery.paused {
             animation-play-state: paused;
         }
         @keyframes logo-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+            from { transform: translate3d(0, 0, 0); }
+            to { transform: translate3d(calc(-1 * var(--loop-distance)), 0, 0); }
         }
         @media (prefers-reduced-motion: reduce) {
             .logo-gallery { animation: none; }
@@ -408,7 +411,7 @@
             <h2 class="text-xs font-tech text-center tracking-widest text-neonCyan uppercase mb-8">
                 Projects I've Contributed To
             </h2>
-            <div class="logo-gallery-viewport" style="overflow: hidden; width: 100%;">
+            <div class="logo-gallery-viewport" style="overflow-x: auto; overflow-y: hidden; width: 100%;">
             <div class="logo-gallery flex pb-4 px-2 space-x-6 md:space-x-8 lg:space-x-12">
                 
                 <!-- Original Set of items -->
@@ -1097,6 +1100,31 @@
 
             if (logoGallery) {
                 let touchPaused = false;
+
+                // Compute the exact pixel width of one set (half the track)
+                // so the animation loops on a whole pixel, avoiding the
+                // sub-pixel rounding jerk that percentage-based transforms
+                // can produce on loop restart.
+                function setLoopDistance() {
+                    const fullWidth = logoGallery.scrollWidth;
+                    logoGallery.style.setProperty('--loop-distance', (fullWidth / 2) + 'px');
+                }
+                setLoopDistance();
+                const images = logoGallery.querySelectorAll('img');
+                let loadedCount = 0;
+                images.forEach((img) => {
+                    const onDone = () => {
+                        loadedCount++;
+                        if (loadedCount === images.length) setLoopDistance();
+                    };
+                    if (img.complete) {
+                        onDone();
+                    } else {
+                        img.addEventListener('load', onDone);
+                        img.addEventListener('error', onDone);
+                    }
+                });
+                window.addEventListener('resize', setLoopDistance);
 
                 logoGallery.addEventListener('mouseenter', () => {
                     logoGallery.classList.add('paused');
