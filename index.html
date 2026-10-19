@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,7 +96,14 @@
             box-shadow: 0 0 14px rgba(77, 184, 200, 0.3);
         }
 
-        /* Logo Carousel Specific Grid-Line Style (Shrunk by 15%) */
+        /* Responsive Video Embed */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; isolation: isolate; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 6px; }
+
+        /* Ensure sticky nav always clears iframes and stacking contexts */
+        nav.sticky-nav { position: sticky; top: 0; z-index: 9999; isolation: isolate; }
+
+                /* Logo Carousel Specific Grid-Line Style (Shrunk by 15%) */
         .logo-gallery {
             width: max-content;
             animation: logo-scroll 100s linear infinite;
@@ -765,8 +772,18 @@
         </div>
     </section>
 
+    <!-- Section Navigation Bar -->
+    <nav class="border-b border-purple-950/40 backdrop-blur-sm sticky top-0" style="z-index: 9999; background-color: rgba(7, 2, 13, 0.97);">
+        <div class="container mx-auto px-6 max-w-6xl flex items-center gap-6 py-3">
+            <span class="text-[10px] font-tech text-slate-600 uppercase tracking-widest hidden sm:block">Jump to:</span>
+            <a href="#content-hub" class="text-xs font-tech font-bold text-neonCyan uppercase tracking-widest hover:text-neonPink transition-colors duration-200 border-b border-transparent hover:border-neonPink pb-0.5">Content Hub</a>
+            <span class="text-slate-700">|</span>
+            <a href="#case-studies" class="text-xs font-tech font-bold text-neonCyan uppercase tracking-widest hover:text-neonPink transition-colors duration-200 border-b border-transparent hover:border-neonPink pb-0.5">Case Studies</a>
+        </div>
+    </nav>
+
     <!-- Main Content Area -->
-    <main class="container mx-auto px-6 py-16 relative z-10 max-w-6xl">
+    <main class="container mx-auto px-6 py-16 max-w-6xl">
 
         <!-- Introduction / About Section -->
         <section class="mb-20">
@@ -787,130 +804,236 @@
             </div>
         </section>
 
-        <!-- Featured Projects Section -->
-        <section class="mb-20">
+        <!-- ═══════════════════════ CONTENT HUB ═══════════════════════ -->
+        <section id="content-hub" class="mb-20">
             <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-12">
                 <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
-                    Featured Projects
+                    Content Hub
                 </h2>
                 <div class="laser-line w-24 h-[2px] mt-2 hidden md:block"></div>
             </div>
 
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-
-                <!-- Project Card: Social Media -->
-                <div class="retro-card p-4 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <img src="Social_Logos.png" alt="Social Logos" class="w-full h-auto rounded-md mb-3 object-cover border border-purple-950/40">
-                        <div class="flex justify-between items-center mb-1.5">
-                            <span class="text-[10px] font-tech text-laserYellow tracking-wider">SHORT-FORM VIDEO</span>
-                            <span class="text-[10px] font-mono text-slate-500">2026</span>
-                        </div>
-                        <h3 class="text-sm font-tech font-bold mb-2 text-white">Social Media</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
-                            A collection of my latest cyber-content.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-purple-950/30">
-                        <a href="Content-Hub.html" class="btn-neon-cyan w-full text-center block text-[10px] font-tech font-bold py-2 rounded uppercase">Learn More</a>
-                    </div>
+            <!-- Sub-section: Ads | Promos -->
+            <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Ads | Promos</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/PumUau_uzi0" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">AC Fine Properties</p>
                 </div>
-
-                <!-- Project Card: The Autograph King -->
-                <div class="retro-card p-4 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <img src="TAK.png" alt="The Autograph King" class="w-full h-auto rounded-md mb-3 object-cover border border-purple-950/40">
-                        <div class="flex justify-between items-center mb-1.5">
-                            <span class="text-[10px] font-tech text-laserYellow tracking-wider">FEATURE DOC</span>
-                            <span class="text-[10px] font-mono text-slate-500">2025</span>
-                        </div>
-                        <h3 class="text-sm font-tech font-bold mb-2 text-white">The Autograph King</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
-                            Co-produced and edited a joyful documentary from over a year of multi-format footage.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-purple-950/30">
-                        <p class="text-[10px] text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Film Editor, Co-Producer</p>
-                        <p class="text-[10px] text-slate-500 mb-3 font-mono">Workflow Management, Narrative Editing</p>
-                        <a href="Case-Study-TAK.html" class="btn-neon-cyan w-full text-center block text-[10px] font-tech font-bold py-2 rounded uppercase">Learn More</a>
-                    </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/pGMcNwzyemM" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">U.S. Army</p>
+                </div>                
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/-RYZ8lhxGwE" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">U.S. Army</p>
                 </div>
-
-                <!-- Project Card: WandaVision (VFX Editor) -->
-                <div class="retro-card p-4 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <img src="WandaVision.webp" alt="WandaVision" class="w-full h-auto rounded-md mb-3 object-cover border border-purple-950/40">
-                        <div class="flex justify-between items-center mb-1.5">
-                            <span class="text-[10px] font-tech text-neonPink tracking-wider">MARVEL STUDIOS</span>
-                            <span class="text-[10px] font-mono text-slate-500">DISNEY+</span>
-                        </div>
-                        <h3 class="text-sm font-tech font-bold mb-2 text-white">WandaVision</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
-                            Managed 10 simultaneous VFX projects, tracking and integrating complex visual elements for this acclaimed Marvel series.
-                            <span class="text-[10px] text-slate-500 font-mono italic block mt-1">*NDA — case study available.*</span>
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-purple-950/30">
-                        <p class="text-[10px] text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Visual Effects Editor</p>
-                        <p class="text-[10px] text-slate-500 mb-3 font-mono">VFX Pipeline, Project Management</p>
-                        <a href="case-study-wanda.html" class="btn-neon-pink w-full text-center block text-[10px] font-tech font-bold py-2 rounded uppercase">Learn More</a>
-                    </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/CKx8TDoGnak" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-
-                <!-- Project Card: Moore Productions (Videographer & Editor) -->
-                <div class="retro-card p-4 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <img src="Moore.png" alt="Moore Productions" class="w-full h-auto rounded-md mb-3 object-cover border border-purple-950/40">
-                        <div class="flex justify-between items-center mb-1.5">
-                            <span class="text-[10px] font-tech text-laserYellow tracking-wider">BROADCAST COMMERCIAL</span>
-                            <span class="text-[10px] font-mono text-slate-500">HISTORIC</span>
-                        </div>
-                        <h3 class="text-sm font-tech font-bold mb-2 text-white">Moore Productions</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
-                            Two-person operation managing all aspects of video production from conception to delivery.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-purple-950/30">
-                        <p class="text-[10px] text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Videographer & Editor</p>
-                        <p class="text-[10px] text-slate-500 mb-3 font-mono">Field Production, Editing, Motion Graphics</p>
-                        <a href="Case-Study-Moore.html" class="btn-neon-cyan w-full text-center block text-[10px] font-tech font-bold py-2 rounded uppercase">Learn More</a>
-                    </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/uoXj2XGFhzc" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/_6btSfxkVLw" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/gm1CmFP1r4E" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/4DJUYpLPWaM" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/SVyZyFSYGgU" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/S8-8eiVUhFc" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Horizon Frameworks</p>
+                </div>                
             </div>
+
+            <!-- Sub-section: Short Films -->
+            <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Short Films</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/fNuXTcicwtg" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Jogging Leads To Ice Cream</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/rAv8UtIxDek" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 1)</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/K2BSSwCBXFU" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 2)</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/UIoh0dSLjyk" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 3)</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/ieAzpf6Qdgs" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 4)</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/RdEYOZ5uKOo" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Bro-Man</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/uFN8FhzKhUI" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 1)</p>
+                </div> 
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/st66HOCo7x8" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 2)</p>
+                </div> 
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/nLLGd6EOMak" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 3)</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/obHYlQbFGek" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 4)</p>
+                </div>                                
+            </div>
+            
+            <!-- Sub-section: Demos | Trailers -->
+            <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Demos | Trailers</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/Ik8GHimEDO8" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">X-Treme Couture</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/HBhL6rTOleE" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Go Blue VFX</p>
+                </div> 
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/rYyODGJQPDI" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Deviant Films</p>
+                </div> 
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/ci50MqGHEF0" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">ABC Safety</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/0cA9f5_gz-Q" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Nashville Demo Reel</p>
+                </div>                
+            </div>
+
+            <!-- Sub-section: Long-Form -->
+            <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Long-Form</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/SapFXIGvWQU?si=zD-SDBWW-0FPSMqM" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">That Old Feeling</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/N_aWGN1UzoE" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">The 4th Stall</p>
+                </div>                
+            </div>
+            
+            <!-- Sub-section: Social Shorts -->
+            <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Social Media Reels</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://youtube.com/embed/3h3ibq3nk48?si=k38texowxcNz-53Y" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Les Travvyld</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://youtube.com/embed/7XfI4NxpNmk?si=nKahf_Z8vXQAXB-S" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Les Travvyld</p>
+                </div>
+                <div class="retro-card p-4 rounded-xl">
+                    <div class="video-container mb-3"><iframe src="https://youtube.com/embed/Ydq2ct6gmX4?si=5nnvErprPoEMykgS" frameborder="0" allowfullscreen></iframe></div>
+                    <p class="text-xs font-tech text-slate-300">Les Travvyld</p>
+                </div>                                
+            </div>            
         </section>
 
-        <!-- Process & Case Studies Section -->
-        <section class="mb-20">
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- CASE STUDIES SECTION                                   -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <section id="case-studies" class="mb-20">
             <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-12">
                 <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
-                    Process & Case Studies
+                    Case Studies
                 </h2>
                 <div class="laser-line w-24 h-[2px] mt-2 hidden md:block"></div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                <!-- Case Study 1: Media Management & Archiving -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
                     <div>
-                        <img src="Brockmire.jpg" alt="Brockmire" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <img src="TAK.png" alt="The Autograph King" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
                         <div class="flex justify-between items-center mb-3">
-                            <span class="text-xs font-tech text-neonPink tracking-wider">WORKFLOW ENGAGEMENT</span>
+                            <span class="text-xs font-tech text-laserYellow tracking-wider">FEATURE DOC</span>
+                            <span class="text-xs font-mono text-slate-500">2025</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">The Autograph King</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Co-produced and edited a joyful documentary from over a year of multi-format footage.</p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Film Editor, Co-Producer</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">Workflow Management, Narrative Editing</p>
+                        <a href="Case-Study-TAK.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
+                </div>
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="WandaVision.webp" alt="WandaVision" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-neonPink tracking-wider">MARVEL STUDIOS</span>
+                            <span class="text-xs font-mono text-slate-500">DISNEY+</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">WandaVision</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Managed 10 simultaneous VFX projects for this acclaimed Marvel series under strict NDA.</p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Visual Effects Editor</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">VFX Pipeline, Project Management</p>
+                        <a href="case-study-wanda.html" class="btn-neon-pink w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
+                </div>
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="Moore.png" alt="Moore Productions" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-laserYellow tracking-wider">BROADCAST COMMERCIAL</span>
+                            <span class="text-xs font-mono text-slate-500">HISTORIC</span>
+                        </div>
+                        <h3 class="text-xl font-tech font-bold mb-3 text-white">Moore Productions</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Two-person operation managing all aspects of video production from conception to delivery.</p>
+                    </div>
+                    <div class="pt-4 border-t border-purple-950/30">
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Videographer & Editor</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">Field Production, Editing, Motion Graphics</p>
+                        <a href="Case-Study-Moore.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
+                    </div>
+                </div>
+                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <img src="brockmire.jpg" alt="Brockmire" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-tech text-neonPink tracking-wider">WORKFLOW</span>
                             <span class="text-xs font-mono text-slate-500">MAM & SERVER</span>
                         </div>
                         <h3 class="text-xl font-tech font-bold mb-3 text-white">Streamlining Media Management</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Detailed overview of how I managed and organized extensive footage for complex television series, streamlining media pipelines and leading to an average efficiency increase of 2 hours per day.
-                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Managed and organized footage for complex TV series, streamlining pipelines with a 2-hour daily efficiency gain.</p>
                     </div>
                     <div class="pt-4 border-t border-purple-950/30">
-                        <p class="text-xs text-slate-400 mb-2 font-tech"><span class="text-neonCyan">FOCUS:</span> Workflow Optimization, Quality Control, Efficiency Gains</p>
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">FOCUS:</span> Workflow Optimization, Quality Control</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">Avid, MAM, Server Management</p>
                         <a href="Case-Study-Media.html" class="btn-neon-pink w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
                     </div>
                 </div>
-
-                <!-- Case Study 2: VFX Shot Delivery Workflow -->
                 <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
                     <div>
                         <img src="ftwd.jpg" alt="Fear The Walking Dead" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
@@ -919,31 +1042,14 @@
                             <span class="text-xs font-mono text-slate-500">FILEMAKER PRO</span>
                         </div>
                         <h3 class="text-xl font-tech font-bold mb-3 text-white">VFX Shot Delivery Workflow</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            An in-depth look at my process for meticulously tracking and delivering 70-100+ visual effects shots per episode under tight deadlines, utilizing FileMaker Pro for visual effect shot elements.
-                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Tracking and delivering 70–100+ VFX shots per episode under tight deadlines using FileMaker Pro.</p>
                     </div>
                     <div class="pt-4 border-t border-purple-950/30">
-                        <p class="text-xs text-slate-400 mb-2 font-tech"><span class="text-neonCyan">FOCUS:</span> Technical Execution, Database Management, Deadline Adherence</p>
+                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">FOCUS:</span> Technical Execution, Database Management</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">FileMaker Pro, Avid, Deadline Adherence</p>
                         <a href="Case-Study-VFX.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
                     </div>
                 </div>
-
-            </div>
-        </section>
-
-        <!-- Personal Projects Section -->
-        <section class="mb-20">
-            <div class="flex flex-col md:flex-row gap-4 items-start justify-between border-b border-purple-950/40 pb-4 mb-12">
-                <h2 class="text-3xl font-tech font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-neonCyan">
-                    Personal & Learning Projects
-                </h2>
-                <div class="laser-line w-24 h-[2px] mt-2 hidden md:block"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Personal Project 1: E-Commerce Shop Owner -->
                 <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
                     <div>
                         <img src="Horizon-Forest-Shop-Banner.png" alt="Horizon Frameworks" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
@@ -952,18 +1058,14 @@
                             <span class="text-xs font-mono text-slate-500">MIDJOURNEY</span>
                         </div>
                         <h3 class="text-xl font-tech font-bold mb-3 text-white">E-Commerce Shop Owner (Etsy)</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Applied prompt engineering and image editing in Midjourney to create designs and established an Etsy shop, leveraging Canva and Photoshop for consistent branding and visual assets.
-                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Applied Midjourney prompt engineering to create designs and launch an Etsy shop with AI-driven branding.</p>
                     </div>
                     <div class="pt-4 border-t border-purple-950/30">
                         <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Shop Manager / Designer</p>
-                        <p class="text-xs text-slate-500 mb-6 font-mono font-light">Prompt Engineering, Image Editing, Branding, Project Management</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">Prompt Engineering, Image Editing, Branding</p>
                         <a href="Case-Study-E-Commerce.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
                     </div>
                 </div>
-
-                <!-- Personal Project 2: Content Creator -->
                 <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
                     <div>
                         <img src="YouTubeGFX.jpg" alt="Content Creator" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
@@ -972,37 +1074,14 @@
                             <span class="text-xs font-mono text-slate-500">DIGITAL BRAND</span>
                         </div>
                         <h3 class="text-xl font-tech font-bold mb-3 text-white">Content Creator</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Managed and designed YouTube and Vimeo channels from scratch, showcasing creations with AI and various online resources. Researched Free Online Resources and learned basic SEO for YouTube.
-                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Managed YouTube and Vimeo channels from scratch using AI tools, free resources, and basic SEO strategies.</p>
                     </div>
                     <div class="pt-4 border-t border-purple-950/30">
                         <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">ROLE:</span> Channel Manager / Designer / Editor</p>
-                        <p class="text-xs text-slate-500 mb-6 font-mono font-light">AI Content Generation, Video Production, SEO, DaVinci Resolve</p>
+                        <p class="text-xs text-slate-500 mb-6 font-mono">AI Content Generation, Video Production, SEO</p>
                         <a href="Case-Study-Content.html" class="btn-neon-pink w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">Learn More</a>
                     </div>
                 </div>
-
-                <!-- Personal Project 3: Additional Video Projects -->
-                <div class="retro-card p-6 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <img src="Collage.png" alt="Additional Video Projects" class="w-full h-auto rounded-md mb-6 object-cover border border-purple-950/40">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-xs font-tech text-neonCyan tracking-wider">COLLAGE OVERVIEW</span>
-                            <span class="text-xs font-mono text-slate-500">VARIOUS FILES</span>
-                        </div>
-                        <h3 class="text-xl font-tech font-bold mb-3 text-white">Additional Video Projects</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            A collection of various video projects showcasing diverse skills in video production, editing, and storytelling.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-purple-950/30">
-                        <p class="text-xs text-slate-400 mb-1 font-tech"><span class="text-neonCyan">FOCUS:</span> Diverse Video Production, Editing, Storytelling</p>
-                        <p class="text-xs text-slate-500 mb-6 font-mono font-light">Videography, Video Editing, Sound Design, Motion Graphics</p>
-                        <a href="additional.html" class="btn-neon-cyan w-full text-center block text-xs font-tech font-bold py-2.5 rounded uppercase">View Projects</a>
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -1112,6 +1191,12 @@
                 <span class="text-slate-700">|</span> 
                 <a href="mailto:joshhuntcontact@gmail.com" class="text-neonPink hover:underline mx-2">Email</a>
             </p>
+            <div class="mt-8 pt-6 border-t border-purple-950/40">
+                <a href="#top" class="inline-flex items-center gap-2 text-[10px] font-tech uppercase tracking-widest text-slate-500 hover:text-neonCyan transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                    Back to Top
+                </a>
+            </div>
         </div>
     </footer>
 
