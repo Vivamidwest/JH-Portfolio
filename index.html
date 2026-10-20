@@ -96,14 +96,10 @@
             box-shadow: 0 0 14px rgba(77, 184, 200, 0.3);
         }
 
-        /* Responsive Video Embed */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; isolation: isolate; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 6px; }
-
         /* Ensure sticky nav always clears iframes and stacking contexts */
         nav.sticky-nav { position: sticky; top: 0; z-index: 9999; isolation: isolate; }
 
-                /* Logo Carousel Specific Grid-Line Style (Shrunk by 15%) */
+        /* Logo Carousel Specific Grid-Line Style (Shrunk by 15%) */
         .logo-gallery {
             width: max-content;
             animation: logo-scroll 100s linear infinite;
@@ -816,150 +812,351 @@
             <!-- Sub-section: Ads | Promos -->
             <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Ads | Promos</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/PumUau_uzi0" frameborder="0" allowfullscreen></iframe></div>
+                
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('PumUau_uzi0')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/PumUau_uzi0/hqdefault.jpg" alt="AC Fine Properties" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">AC Fine Properties</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/pGMcNwzyemM" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('pGMcNwzyemM')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/pGMcNwzyemM/hqdefault.jpg" alt="U.S. Army" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">U.S. Army</p>
-                </div>                
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/-RYZ8lhxGwE" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('-RYZ8lhxGwE')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/-RYZ8lhxGwE/hqdefault.jpg" alt="U.S. Army" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">U.S. Army</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/CKx8TDoGnak" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('CKx8TDoGnak')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/CKx8TDoGnak/hqdefault.jpg" alt="SkinnyFit" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/uoXj2XGFhzc" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('uoXj2XGFhzc')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/uoXj2XGFhzc/hqdefault.jpg" alt="SkinnyFit" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/_6btSfxkVLw" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('_6btSfxkVLw')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/_6btSfxkVLw/hqdefault.jpg" alt="SkinnyFit" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/gm1CmFP1r4E" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('gm1CmFP1r4E')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/gm1CmFP1r4E/hqdefault.jpg" alt="SkinnyFit" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/4DJUYpLPWaM" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('4DJUYpLPWaM')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/4DJUYpLPWaM/hqdefault.jpg" alt="SkinnyFit" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/SVyZyFSYGgU" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('SVyZyFSYGgU')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/SVyZyFSYGgU/hqdefault.jpg" alt="SkinnyFit" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">SkinnyFit</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/S8-8eiVUhFc" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('S8-8eiVUhFc')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/S8-8eiVUhFc/hqdefault.jpg" alt="Horizon Frameworks" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Horizon Frameworks</p>
-                </div>                
+                </div>
+
             </div>
 
             <!-- Sub-section: Short Films -->
             <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Short Films</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/fNuXTcicwtg" frameborder="0" allowfullscreen></iframe></div>
+                
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('fNuXTcicwtg')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/fNuXTcicwtg/hqdefault.jpg" alt="Jogging Leads To Ice Cream" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Jogging Leads To Ice Cream</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/V7VrpMUye5I?feature=share" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('V7VrpMUye5I')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/V7VrpMUye5I/hqdefault.jpg" alt="Improve Your Golf Swing!" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Improve Your Golf Swing!</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/rAv8UtIxDek" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('rAv8UtIxDek')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/rAv8UtIxDek/hqdefault.jpg" alt="Sniff" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 1)</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/K2BSSwCBXFU" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('K2BSSwCBXFU')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/K2BSSwCBXFU/hqdefault.jpg" alt="Sniff" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 2)</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/UIoh0dSLjyk" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('UIoh0dSLjyk')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/UIoh0dSLjyk/hqdefault.jpg" alt="Sniff" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 3)</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/ieAzpf6Qdgs" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('ieAzpf6Qdgs')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/ieAzpf6Qdgs/hqdefault.jpg" alt="Sniff" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Sniff "Behind the Scenes" (Part 4)</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/RdEYOZ5uKOo" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('RdEYOZ5uKOo')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/RdEYOZ5uKOo/hqdefault.jpg" alt="Bro-Man" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Bro-Man</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/uFN8FhzKhUI" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('uFN8FhzKhUI')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/uFN8FhzKhUI/hqdefault.jpg" alt="L.A. I'm Your's" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 1)</p>
-                </div> 
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/st66HOCo7x8" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('st66HOCo7x8')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/st66HOCo7x8/hqdefault.jpg" alt="L.A. I'm Your's" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 2)</p>
-                </div> 
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/nLLGd6EOMak" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('nLLGd6EOMak')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/nLLGd6EOMak/hqdefault.jpg" alt="L.A. I'm Your's" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 3)</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/obHYlQbFGek" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('obHYlQbFGek')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/obHYlQbFGek/hqdefault.jpg" alt="L.A. I'm Your's" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">L.A. I'm Your's (Part 4)</p>
-                </div>                                
+                </div>
+
             </div>
             
             <!-- Sub-section: Demos | Trailers -->
             <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Demos | Trailers</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/Ik8GHimEDO8" frameborder="0" allowfullscreen></iframe></div>
+                
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('Ik8GHimEDO8')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/Ik8GHimEDO8/hqdefault.jpg" alt="X-Treme Couture" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">X-Treme Couture</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/HBhL6rTOleE" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('HBhL6rTOleE')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/HBhL6rTOleE/hqdefault.jpg" alt="Go Blue VFX" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Go Blue VFX</p>
-                </div> 
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/rYyODGJQPDI" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('rYyODGJQPDI')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/rYyODGJQPDI/hqdefault.jpg" alt="Deviant Films" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Deviant Films</p>
-                </div> 
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/ci50MqGHEF0" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('ci50MqGHEF0')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/ci50MqGHEF0/hqdefault.jpg" alt="ABC Safety" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">ABC Safety</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/0cA9f5_gz-Q" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('0cA9f5_gz-Q')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/0cA9f5_gz-Q/hqdefault.jpg" alt="Nashville Demo Reel" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Nashville Demo Reel</p>
-                </div>                
+                </div>
+
             </div>
 
             <!-- Sub-section: Long-Form -->
             <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Long-Form</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/SapFXIGvWQU?si=zD-SDBWW-0FPSMqM" frameborder="0" allowfullscreen></iframe></div>
+                
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('SapFXIGvWQU')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/SapFXIGvWQU/hqdefault.jpg" alt="That Old Feeling" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">That Old Feeling</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://www.youtube.com/embed/N_aWGN1UzoE" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('N_aWGN1UzoE')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/N_aWGN1UzoE/hqdefault.jpg" alt="The 4th Stall" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Video</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">The 4th Stall</p>
-                </div>                
+                </div>
+
             </div>
             
             <!-- Sub-section: Social Shorts -->
             <h3 class="text-lg font-tech font-bold text-neonPink mb-6 uppercase tracking-widest">Social Media Reels</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://youtube.com/embed/3h3ibq3nk48?si=k38texowxcNz-53Y" frameborder="0" allowfullscreen></iframe></div>
+                
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('3h3ibq3nk48')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/3h3ibq3nk48/hqdefault.jpg" alt="Les Travvyld" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Short</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Les Travvyld</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://youtube.com/embed/7XfI4NxpNmk?si=nKahf_Z8vXQAXB-S" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('7XfI4NxpNmk')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/7XfI4NxpNmk/hqdefault.jpg" alt="Les Travvyld" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Short</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Les Travvyld</p>
                 </div>
-                <div class="retro-card p-4 rounded-xl">
-                    <div class="video-container mb-3"><iframe src="https://youtube.com/embed/Ydq2ct6gmX4?si=5nnvErprPoEMykgS" frameborder="0" allowfullscreen></iframe></div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('Ydq2ct6gmX4')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/Ydq2ct6gmX4/hqdefault.jpg" alt="Les Travvyld" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Short</span>
+                        </div>
+                    </div>
                     <p class="text-xs font-tech text-slate-300">Les Travvyld</p>
-                </div>                                
+                </div>
+
+                <div class="retro-card p-4 rounded-xl flex flex-col justify-between group cursor-pointer" onclick="openModal('xdTtwzp6Dh0')">
+                    <div class="relative aspect-video w-full rounded-md overflow-hidden mb-3 bg-black/60 border border-purple-950/40">
+                        <img src="https://img.youtube.com/vi/xdTtwzp6Dh0/hqdefault.jpg" alt="YouTube Short" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-[#07020d]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="btn-neon-cyan font-tech text-xs font-bold py-2 px-4 rounded-full uppercase">View Short</span>
+                        </div>
+                    </div>
+                    <p class="text-xs font-tech text-slate-300">Social Reel / Short</p>
+                </div>
+
             </div>            
         </section>
 
